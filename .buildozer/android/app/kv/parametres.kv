@@ -1,0 +1,46 @@
+<Parametres>:
+	name: 'parametres'
+
+	MDBoxLayout:
+
+		ScrollView:
+		
+			MDList:
+				id:container
+
+				OneLineListItem:
+					text:"Theme"
+					on_release: root.spin_active()
+
+				TwoLineListItem:
+					id: main_user
+					text: "Utilisateur Principal"
+					on_release: root.main_user_dd_menu.open()
+
+				TwoLineListItem:
+					id: adress_server
+					text: "Adresse Serveur"
+					secondary_text: 'Url du serveur'
+					on_release: root.set_adresse_serveur()
+
+				TwoLineListItem:
+					text: "Version"
+					secondary_text: str(app.title)
+
+	MDSpinner:
+		id: progress
+		size_hint: None, None
+		size: dp(46), dp(46)
+		pos_hint: {'center_x': .5, 'center_y': .5}
+		active: False
+
+
+<Content>
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    #height: "120dp"
+
+	MDTextField:
+		id: data
+		hint_text: "Nouvelle adresse"

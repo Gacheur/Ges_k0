@@ -1,0 +1,34 @@
+	2021.
+
+Ajout dans conf.ini url serveur
+
+
+	2020.12.13
+
+DialogBox confirmation suppression Heures - OK
+
+Inversion Humain_list/Humain, eviter les doublon en affichant en premier la liste - OK
+
+Ajout Check Version au demmarage - OK
+
+Sort liste heures - OK	
+
+Ajout conf.ini Sauvegarge Theme et Utilisateur Principal - OK
+
+	2020.1122:
+
+ScrollViews Humains Chantiers : Le clavier bloque le remplissage des champs - OK
+
+Spinner Heures: visuel de chargement pendant requete sql -OK
+Spinner Chantiers: visuel de chargement pendant requete sql -OK
+Spinner Humains: visuel de chargement pendant requete sql -OK
+
+Doublons Heures: requete sql de vérification pour éviter les doublons -OK
+Doublons Chantiers: requete sql de vérification pour éviter les doublons  -OK
+Doublons Humains: requete sql de vérification pour éviter les doublons  -OK
+
+Ajout fonction suppression des heures -OK
+
+Inversion Chantier_list/Chantier, eviter les doublon en affichant en premier la liste - OK
+
+	2020.1116:

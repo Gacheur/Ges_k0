@@ -1,0 +1,108 @@
+#: include kv/accueil.kv
+#: include kv/heures.kv
+#: include kv/humains.kv
+#: include kv/chantiers.kv
+#: include kv/parametres.kv
+
+MDNavigationLayout:
+	id: nav_layout
+
+	ScreenManager:
+		Screen:
+
+			MDBoxLayout:
+				orientation: 'vertical'
+
+				MDToolbar:
+					title:"Menu"
+					elevation: 10
+					left_action_items:[["menu", lambda x: nav_drawer.set_state()]]
+
+				ScreenManager:
+					id: screen_manager
+						
+					Accueil:
+						id: accueil
+						name:"accueil"
+
+					Heures:
+						id: heures
+						name: "heures"
+
+					Humains:
+						id: humains
+						name: "humains"
+
+					HumainsList:
+						id: humains_list
+						name: "humains_list"					
+
+					Chantiers:
+						id: chantiers
+						name: "chantiers"
+
+					ChantiersList:
+						id: chantiers_list
+						name: "chantiers_list"
+						
+					Parametres:
+						id: parametres
+						name: "parametres"
+
+
+	MDNavigationDrawer:
+		id: nav_drawer
+
+		MDBoxLayout:
+			orientation: 'vertical'
+			padding: 8
+			spacing: 8
+
+			MDIconButton:
+				pos_hint: {'center_y': .8, 'center_x': .5}
+				size : "150", "150"
+				icon: "static/logo.png"
+				#user_font_size: "64sp"
+				on_release:
+					screen_manager.current = "accueil"
+					nav_drawer.set_state()
+
+			ScrollView:
+
+				MDList:
+
+
+					OneLineAvatarListItem:
+						text:"Heures"
+						on_release:
+							screen_manager.current = "heures"
+							nav_drawer.set_state()
+						IconLeftWidget:
+							icon:"clock-outline"
+
+
+					OneLineAvatarListItem:
+						text:"Humains"
+						on_release:
+							screen_manager.current = "humains_list"
+							nav_drawer.set_state()
+						IconLeftWidget:
+							icon:"account-circle"
+
+
+					OneLineAvatarListItem:
+						text:"Chantiers"
+						on_release:
+							screen_manager.current = "chantiers_list"
+							nav_drawer.set_state()
+						IconLeftWidget:
+							icon:"office-building"
+
+
+					OneLineAvatarListItem:
+						text:"Parametres"
+						on_release:
+							screen_manager.current = "parametres"
+							nav_drawer.set_state()
+						IconLeftWidget:
+							icon:"cog"

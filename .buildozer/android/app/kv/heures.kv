@@ -1,0 +1,105 @@
+<Heures>:
+	name: 'heures'
+
+
+
+	MDFloatLayout:
+
+
+		MDSpinner:
+			id: progress
+			size_hint: None, None
+			size: dp(46), dp(46)
+			pos_hint: {'center_x': .5, 'center_y': .5}
+			active: False
+
+
+		MDFloatingActionButton:
+			id:pick_time
+			pos_hint:{"center_y":.9, "center_x":1/5}
+			icon: "clock-outline"
+			opposite_colors: True
+			on_press: root.menu_time.open()
+
+			md_bg_color: app.theme_cls.primary_color
+
+		MDLabel:
+			id:data_time
+			pos_hint:{"center_y":.8, "center_x":1/5}
+			halign:"center"
+
+
+
+		MDFloatingActionButton:
+			id:pick_date
+			pos_hint:{"center_y":.9, "center_x":2/5}
+			icon: "calendar"
+			#user_font_size: "40sp"
+			on_press: root.show_date_picker()
+			md_bg_color: app.theme_cls.primary_color
+
+		MDLabel:
+			id:data_date
+			pos_hint:{"center_y":.8, "center_x":2/5}
+			halign:"center"
+
+
+
+		MDFloatingActionButton:
+			id: pick_pers
+			pos_hint:{"center_y":.9, "center_x":3/5}
+			icon: "account-circle"
+			#user_font_size: "40sp"
+			on_press: root.menu.open()
+			md_bg_color: app.theme_cls.primary_color
+
+		MDLabel:
+			id:data_pers
+			pos_hint:{"center_y":.8, "center_x":3/5}
+			halign:"center"
+
+		MDFloatingActionButton:
+			id: pick_chantier
+			pos_hint:{"center_y":.9, "center_x":4/5}
+			icon: "office-building"
+			#user_font_size: "40sp"
+			on_press: root.menu_chantier.open()
+			md_bg_color: app.theme_cls.primary_color
+
+		MDLabel:
+			id:data_chantier
+			pos_hint:{"center_y":.8, "center_x":4/5}
+			halign:"center"
+
+
+
+
+		MDFloatingActionButton:
+			id: check
+			pos_hint:{"center_y":.7, "center_x":0.5}
+			icon: "plus"
+			#user_font_size: "40sp"
+			on_press: root.spin_add_heures()
+			md_bg_color: app.theme_cls.primary_color
+
+
+		MDIconButton:
+			id: btn_table
+			pos_hint:{"center_y":.7, "center_x":0.7}
+			icon: "database-search"
+			on_press: root.sort()
+
+
+		MDIconButton:
+			id: btn_rm_label
+			pos_hint:{"center_y":.7, "center_x":0.3}
+			icon: "window-close"
+			on_press: root.remove_label()
+
+		ScrollView:
+			pos_hint:{"top":.6}
+			size_hint_y:.6
+
+			MDList:
+				id: container
+

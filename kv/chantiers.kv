@@ -1,0 +1,70 @@
+<Chantiers>:
+
+	MDFloatLayout:
+
+		MDLabel:
+			text:'Chantiers'
+			pos_hint:{'center_y':.9, "center_x":1/2}
+			font_style: "H4"
+			halign:"center"
+
+		MDSpinner:
+			id: progress
+			size_hint: None, None
+			size: dp(46), dp(46)
+			pos_hint: {'center_x': .5, 'center_y': .5}
+			active: False
+
+
+		MDTextField:
+			id:nom
+			pos_hint:{'center_y':.7, "center_x":1/2}
+			size_hint_x:.6
+			hint_text: "Nom"
+			on_focus: self.icon_right = ''
+
+		MDTextField:
+			id:localisation
+			pos_hint:{'center_y':.6, "center_x":1/2}
+			size_hint_x:.6
+			hint_text: "Localisation"
+			on_focus: self.icon_right = ''
+
+
+		MDFloatingActionButton:
+			id:valider
+			pos_hint:{'center_y':.1, "center_x":1/2}
+			icon: "check-circle"
+			md_bg_color: app.theme_cls.primary_color
+			on_press: root.spin_add_chantier()
+
+
+
+
+<ChantiersList>:
+	name: 'chantiers_list'
+
+	MDFloatLayout:
+
+		MDLabel:
+			text:'Chantiers LISTE'
+			pos_hint:{'center_y':.9, "center_x":1/2}
+			font_style: "H4"
+			halign:"center"
+
+
+
+
+		ScrollView:
+			pos_hint:{"top":.8}
+			size_hint_y:.8
+
+			MDList:
+				id: container
+
+
+		MDFloatingActionButton:
+			pos_hint:{'center_y':.1, "center_x":.8}
+			icon: "plus"
+			md_bg_color: app.theme_cls.primary_color
+			on_press: root.manager.current = 'chantiers'

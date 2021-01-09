@@ -1,0 +1,97 @@
+<Humains>:
+	name: 'humain'
+
+
+	MDFloatLayout:
+
+		MDSpinner:
+			id: progress
+			size_hint: None, None
+			size: dp(46), dp(46)
+			pos_hint: {'center_x': .5, 'center_y': .5}
+			active: False
+
+		MDLabel:
+			text:'Utilisateurs'
+			pos_hint:{'center_y':.9, "center_x":1/2}
+			font_style: "H4"
+			halign:"center"
+
+
+		MDTextField:
+			id:prénom
+			pos_hint:{'center_y':.7, "center_x":1/2}
+			size_hint_x:.6
+			hint_text: "Prénom"
+			on_focus: self.icon_right = ''
+
+		MDTextField:
+			id:téléphone
+			pos_hint:{'center_y':.6, "center_x":1/2}
+			size_hint_x:.6
+			hint_text: "Téléphone"
+			text:'+33'
+			on_focus: self.icon_right = ''
+
+		MDTextField:
+			id:statut
+			pos_hint:{'center_y':.5, "center_x":1/2}
+			size_hint_x:.6
+			hint_text: "Statut"
+			on_focus: if self.focus: root.menu_statut.open()
+
+		MDTextField:
+			id:taux_h
+			pos_hint:{'center_y':.4, "center_x":1/2}
+			size_hint_x:.6
+			hint_text: "Taux horraire"
+			on_focus: self.icon_right = ''
+
+		MDTextField:
+			id:taille_pentalon
+			pos_hint:{'center_y':.3, "center_x":1/2}
+			size_hint_x:.6
+			hint_text: "Tour de taille"
+			on_focus: self.icon_right = ''
+
+		MDTextField:
+			id:pointure
+			pos_hint:{'center_y':.2, "center_x":1/2}
+			size_hint_x:.6
+			hint_text: "Pointure"
+			on_focus: self.icon_right = ''
+
+
+		MDFloatingActionButton:
+			id:pick_time
+			pos_hint:{'center_y':.1, "center_x":1/2}
+			icon: "check-circle"
+			on_press: root.spin_add_humains()
+			md_bg_color: app.theme_cls.primary_color
+
+
+
+<HumainsList>:
+	name: 'humains_list'
+
+	MDFloatLayout:
+
+		MDLabel:
+			text:'Utilisateurs LISTE'
+			pos_hint:{'center_y':.9, "center_x":1/2}
+			font_style: "H4"
+			halign:"center"
+
+		ScrollView:
+			pos_hint:{"top":.8}
+			size_hint_y:.8
+
+			MDList:
+				id: container
+
+
+		MDFloatingActionButton:
+			pos_hint:{'center_y':.1, "center_x":.8}
+			icon: "plus"
+			md_bg_color: app.theme_cls.primary_color
+			on_press: root.manager.current = 'humains'
