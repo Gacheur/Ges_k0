@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Ges_k0</string>
-    <string name="private_version">1609794774.903961</string>
+    <string name="private_version">1610206006.6407125</string>
     <string name="presplash_color">white</string>
     <string name="urlScheme">kivy</string>
 </resources>

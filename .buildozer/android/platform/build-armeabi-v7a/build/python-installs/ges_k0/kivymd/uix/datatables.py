@@ -27,6 +27,7 @@ from kivy.lang import Builder
 from kivy.metrics import dp
 from kivy.properties import (
     BooleanProperty,
+    ColorProperty,
     DictProperty,
     ListProperty,
     NumericProperty,
@@ -337,7 +338,7 @@ class CellRow(
     index = None
     icon = StringProperty()
     icon_copy = icon
-    icon_color = ListProperty()
+    icon_color = ColorProperty(None)
     selected = BooleanProperty(False)
     selectable = BooleanProperty(True)
 
@@ -1293,7 +1294,7 @@ class MDDataTable(ThemableBehavior, AnchorLayout):
     and defaults to `'140dp'`.
     """
 
-    background_color = ListProperty([0, 0, 0, 0])
+    background_color = ColorProperty([0, 0, 0, 0])
     """
     Background color in the format (r, g, b, a).
     See :attr:`~kivy.uix.modalview.ModalView.background_color`.
@@ -1345,8 +1346,8 @@ class MDDataTable(ThemableBehavior, AnchorLayout):
     .. image:: https://github.com/HeaTTheatR/KivyMD-data/raw/master/gallery/kivymddoc/datatables-use-markup-strings.png
         :align: center
 
-    :attr:`background_color` is a :class:`~kivy.properties.ListProperty` and
-    defaults to [0, 0, 0, .7].
+    :attr:`background_color` is a :class:`~kivy.properties.ColorProperty` and
+    defaults to [0, 0, 0, 0].
     """
 
     def __init__(self, **kwargs):

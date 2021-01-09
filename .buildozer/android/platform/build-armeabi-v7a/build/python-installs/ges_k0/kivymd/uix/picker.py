@@ -170,6 +170,7 @@ from kivy.core.window import Window
 from kivy.lang import Builder
 from kivy.properties import (
     BooleanProperty,
+    ColorProperty,
     ListProperty,
     NumericProperty,
     ObjectProperty,
@@ -464,7 +465,7 @@ class MDDatePicker(
     year = NumericProperty()
     today = date.today()
     callback = ObjectProperty()
-    background_color = ListProperty([0, 0, 0, 0.7])
+    background_color = ColorProperty([0, 0, 0, 0.7])
 
     class SetDateError(Exception):
         pass

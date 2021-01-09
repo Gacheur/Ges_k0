@@ -39,15 +39,11 @@ version.filename = %(source.dir)s/version.py
 requirements =
 	python3==3.8.5,
 	hostpython3==3.8.5,
-	#Pillow==7.0.0,
 	kivy,
 	https://github.com/kivymd/KivyMD/archive/master.zip,
 	mysql-connector-python,
 	sdl2_ttf==2.0.15,
 	configparser,
-
-
-	
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -79,7 +75,7 @@ orientation = portrait
 osx.python_version = 3
 
 # Kivy version to use
-osx.kivy_version = 1.9.1
+#osx.kivy_version = 2.0.0
 
 #
 # Android specific
@@ -93,7 +89,7 @@ fullscreen = 0
 # red, blue, green, black, white, gray, cyan, magenta, yellow, lightgray,
 # darkgray, grey, lightgrey, darkgrey, aqua, fuchsia, lime, maroon, navy,
 # olive, purple, silver, teal.
-android.presplash_color = white
+android.presplash_color = lightgrey
 
 # (list) Permissions
 android.permissions = INTERNET, CAMERA
@@ -128,13 +124,13 @@ android.permissions = INTERNET, CAMERA
 # (bool) If True, then skip trying to update the Android sdk
 # This can be useful to avoid excess Internet downloads or save time
 # when an update is due and you just want to test/build your package
-# android.skip_update = False
+android.skip_update = True
 
 # (bool) If True, then automatically accept SDK license
 # agreements. This is intended for automation only. If set to False,
 # the default, you will be shown the license when first running
 # buildozer.
-# android.accept_sdk_license = False
+android.accept_sdk_license = True
 
 # (str) Android entry point, default is ok for Kivy-based app
 #android.entrypoint = org.renpy.android.PythonActivity

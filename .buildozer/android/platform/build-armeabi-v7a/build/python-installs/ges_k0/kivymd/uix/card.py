@@ -545,7 +545,7 @@ from kivy.lang import Builder
 from kivy.metrics import dp
 from kivy.properties import (
     BooleanProperty,
-    ListProperty,
+    ColorProperty,
     NumericProperty,
     OptionProperty,
     StringProperty,
@@ -598,11 +598,11 @@ Builder.load_string(
 class MDSeparator(ThemableBehavior, BoxLayout):
     """A separator line."""
 
-    color = ListProperty()
+    color = ColorProperty(None)
     """Separator color in ``rgba`` format.
 
-    :attr:`color` is a :class:`~kivy.properties.ListProperty`
-    and defaults to `[]`.
+    :attr:`color` is a :class:`~kivy.properties.ColorProperty`
+    and defaults to `None`.
     """
 
     def __init__(self, **kwargs):

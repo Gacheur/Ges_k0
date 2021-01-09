@@ -205,5 +205,5 @@ Classifier: Programming Language :: Python :: 3.6
 Classifier: Programming Language :: Python :: 3.7
 Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
 Description-Content-Type: text/markdown
-Provides-Extra: ci
 Provides-Extra: dev
+Provides-Extra: ci

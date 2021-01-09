@@ -12,6 +12,7 @@ from kivymd.uix.list import IconRightWidget,IconLeftWidget
 from kivy.properties import StringProperty
 from kivy.metrics import dp
 from kivymd.uix.behaviors import TouchBehavior
+from datetime import date
 
 
 class Item(OneLineListItem, TouchBehavior):
@@ -42,7 +43,7 @@ class Item(OneLineListItem, TouchBehavior):
 
 	def alert_dialog_continuer_remove_heures(self, inst):
 
-		data = tuple(self.text.split(" "))
+		data = tuple(self.text.split("   "))
 		print(data)
 
 		cmd="DELETE FROM HEURES WHERE NOM=%s AND CHANTIERS=%s AND NB_HEURES=%s AND DATE=%s AND SEMAINE=%s"
@@ -67,7 +68,7 @@ class Heures(Screen):
 
 	def add_item_containt(self, text, index):
 
-		new_line = Item(text=text)#, on_long_touch=release)
+		new_line = Item(text=text)
 		self.ids.container.add_widget(new_line, index=index)
 
 
@@ -85,10 +86,16 @@ class Heures(Screen):
 			self.ids['data_pers'].text = self.app.config['USER']['principal']
 		except:
 			None
+
+
+		self.ids['data_date'].text = str(date.today().strftime('%A-%d-%B'))
+		self.week_num = str('S{}'.format(date.today().isocalendar()[1]))
+		self.ids['data_time'].text = '8h'
+
 	
 		for i in self.app.ls_heures:
 
-			self.add_item_containt(' '.join(i), 0)
+			self.add_item_containt('   '.join(i), 0)
 			
 		#ls personnes
 		ls_i_personne = [{"text": "{}".format(i[0])} for i in self.app.ls_humains]
@@ -112,7 +119,9 @@ class Heures(Screen):
 		self.menu_chantier.bind(on_release=self.get_chantier)
 
 		#ls nb_heures
-		ls_i_nb_heures = [{"text": "{}".format(i+1)} for i in range(10)]
+		ls_i_nb_heures = [{"text":"{}h".format(i+1)} for i in range(9)]
+		ls_i_nb_heures.append({'text':'Mal'})
+		ls_i_nb_heures.append({'text':'Abs'})
 		self.menu_time = MDDropdownMenu(
 			caller=self.ids.pick_time,
 			items=ls_i_nb_heures,
@@ -143,8 +152,8 @@ class Heures(Screen):
 		self.menu_chantier.dismiss()
 
 	def get_date(self, date):
-		self.ids['data_date'].text = str(date)
-		self.week_num = str(date.isocalendar()[1])
+		self.ids['data_date'].text = str(date.strftime('%A-%d-%B'))
+		self.week_num = str('S{}'.format(date.isocalendar()[1]))
 
 
 
@@ -192,7 +201,7 @@ class Heures(Screen):
 					sql(cmd, data)
 					self.app.build()
 
-					self.add_item_containt(' '.join(data), index= len(self.ids.container.children))
+					self.add_item_containt('   '.join(data), index= len(self.ids.container.children))
 
 					Snackbar(text="Merci !", padding="20dp").open()
 
@@ -213,10 +222,9 @@ class Heures(Screen):
 		if not self.dialog:
 			self.dialog = MDDialog(
 			title="Attention",
-			text="Des heures tu as déjà des heures renseignés sur cette date. Merci de verifier les informations",
+			text="Tu as déjà des heures sur cette date. Merci de verifier les informations",
 			buttons=[
 				MDFlatButton(text="Continuer", on_release=self.alert_dialog_continuer),
-				MDFlatButton(text="Retour", on_release=self.alert_dialog_retour),
 				],
 			)
 		self.dialog.open()
@@ -240,13 +248,9 @@ class Heures(Screen):
 		sql(cmd, data)
 		self.app.build()
 
-		self.add_item_containt(' '.join(data), 0)
+		self.add_item_containt('   '.join(data), 0)
 
 		Snackbar(text="Merci !", padding="20dp").open()
-		self.dialog.dismiss()
-
-
-	def alert_dialog_retour(self, inst):
 		self.dialog.dismiss()
 
 
@@ -260,7 +264,7 @@ class Heures(Screen):
 
 			if self.ids.data_pers.text == i[0] and self.week_num == i[4]:
 
-				self.add_item_containt((' '.join(map(str, i))), 0)
+				self.add_item_containt(('   '.join(map(str, i))), 0)
 
 
 #303, 290, 265

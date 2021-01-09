@@ -54,7 +54,7 @@ A simple example:
                         MDToolbar:
                             title: "Navigation Drawer"
                             elevation: 10
-                            left_action_items: [['menu', lambda x: nav_drawer.toggle_nav_drawer()]]
+                            left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
 
                         Widget:
 
@@ -294,6 +294,7 @@ from kivy.lang import Builder
 from kivy.properties import (
     AliasProperty,
     BooleanProperty,
+    ColorProperty,
     ListProperty,
     NumericProperty,
     ObjectProperty,
@@ -318,7 +319,7 @@ Builder.load_string(
         (self.width * (self.open_progress - 1)) \
         if self.anchor == "left" \
         else (Window.width - self.width * self.open_progress)
-    elevation: 10
+    elevation: root.elevation
 
     canvas:
         Clear
@@ -510,13 +511,13 @@ class MDNavigationDrawer(MDCard):
     and defaults to `20`.
     """
 
-    scrim_color = ListProperty([0, 0, 0, 0.5])
+    scrim_color = ColorProperty([0, 0, 0, 0.5])
     """
     Color for scrim. Alpha channel will be multiplied with
     :attr:`_scrim_alpha`. Set fourth channel to 0 if you want to disable
     scrim.
 
-    :attr:`scrim_color` is a :class:`~kivy.properties.ListProperty`
+    :attr:`scrim_color` is a :class:`~kivy.properties.ColorProperty`
     and defaults to `[0, 0, 0, 0.5]`.
     """
 
@@ -690,7 +691,8 @@ class MDNavigationDrawer(MDCard):
                 ):
                     self.status = "opening_with_swipe"
             elif self.status == "opened":
-                self.status = "closing_with_swipe"
+                if abs(touch.x - touch.ox) > self.swipe_distance:
+                    self.status = "closing_with_swipe"
 
         if self.status in ("opening_with_swipe", "closing_with_swipe"):
             self.open_progress = max(
