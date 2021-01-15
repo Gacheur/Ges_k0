@@ -39,7 +39,7 @@ version.filename = %(source.dir)s/version.py
 requirements =
 	python3==3.8.5,
 	hostpython3==3.8.5,
-	kivy,
+	kivy==2.0.0,
 	https://github.com/kivymd/KivyMD/archive/master.zip,
 	mysql-connector-python,
 	sdl2_ttf==2.0.15,
@@ -75,7 +75,7 @@ orientation = portrait
 osx.python_version = 3
 
 # Kivy version to use
-#osx.kivy_version = 2.0.0
+osx.kivy_version = 1.9.1
 
 #
 # Android specific
@@ -124,13 +124,13 @@ android.permissions = INTERNET, CAMERA
 # (bool) If True, then skip trying to update the Android sdk
 # This can be useful to avoid excess Internet downloads or save time
 # when an update is due and you just want to test/build your package
-android.skip_update = True
+# android.skip_update = False
 
 # (bool) If True, then automatically accept SDK license
 # agreements. This is intended for automation only. If set to False,
 # the default, you will be shown the license when first running
 # buildozer.
-android.accept_sdk_license = True
+# android.accept_sdk_license = False
 
 # (str) Android entry point, default is ok for Kivy-based app
 #android.entrypoint = org.renpy.android.PythonActivity
@@ -295,7 +295,7 @@ warn_on_root = 1
 # build_dir = ./.buildozer
 
 # (str) Path to build output (i.e. .apk, .ipa) storage
-bin_dir = ./bin
+# bin_dir = ./bin
 
 #    -----------------------------------------------------------------------------
 #    List as sections

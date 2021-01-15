@@ -1,19 +1,56 @@
 from kivy.uix.screenmanager import Screen
 from kivymd.app import MDApp
-from kivymd.uix.picker import MDDatePicker
-from kivymd.uix.list import TwoLineAvatarIconListItem, IconRightWidget
+from kivymd.uix.list import TwoLineListItem
 from kivymd.uix.menu import MDDropdownMenu
-from kivy.properties import ObjectProperty
 from kivymd.uix.snackbar import Snackbar
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.button import MDFlatButton
 from kivy.clock import Clock
 from baseclass.sql import sql
 from threading import Thread
+from kivymd.uix.behaviors import TouchBehavior
 
-ls_item = []
+
+
+class Item(TwoLineListItem, TouchBehavior):
+
+	dialog_remove_heures= None
+	def __init__(self, **kw):
+
+		super().__init__(**kw)
+		self.app = MDApp.get_running_app()
+
+	def on_long_touch(self, *args):
+
+		print(self.text)
+
+		data = (self.text,)
+		cmd="SELECT * FROM HUMAINS WHERE PRENOM =%s"
+
+		global profil
+		profil = sql(cmd, data)
+
+		print("<on_long_touch> event")
+		print(self.text)
+		print(self.parent)
+		print(self.parent.parent.parent.parent.manager.current)
+		self.parent.parent.parent.parent.manager.current = 'humains' #Attention emboitement de merde...
+
+
+		self.app.root.ids.humains.ids['prénom'].text = profil[0][0]
+		self.app.root.ids.humains.ids['téléphone'].text = profil[0][1]
+		self.app.root.ids.humains.ids['statut'].text = profil[0][2]
+		self.app.root.ids.humains.ids['taux_h'].text = profil[0][3]
+		self.app.root.ids.humains.ids['taille_pentalon'].text = profil[0][4]
+		self.app.root.ids.humains.ids['pointure'].text = profil[0][5]
+
+
+		# A revoir ! 
+
 
 class Humains(Screen):
 
-	menu_statut = ObjectProperty()
+	dialog_confirm_modify_profil = None
 
 	def __init__(self, **kw):
 		super().__init__(**kw)
@@ -53,6 +90,36 @@ class Humains(Screen):
 		p.start()
 
 
+	def sql_add_humaine(self):
+
+		if self.ids['statut'].text == 'Stagiaire':
+			data=(
+				self.ids['prénom'].text,
+				self.ids['téléphone'].text,
+				self.ids['statut'].text,
+				0.0,
+				'0',
+				'0'
+			)
+
+		else:
+			data=(
+				self.ids['prénom'].text,
+				self.ids['téléphone'].text,
+				self.ids['statut'].text,
+				self.ids['taux_h'].text,
+				self.ids['taille_pentalon'].text,
+				self.ids['pointure'].text
+			)
+
+		cmd="INSERT INTO HUMAINS(PRENOM, TEL, STATUT, TAUX_H, TAILLE_PENTALON, POINTURE) VALUES (%s,%s,%s,%s,%s,%s)"
+
+			
+		print(sql(cmd, data))
+		self.app.ls_humains.insert(0, data)
+		Snackbar(text="Merci !", padding="20dp").open()
+
+
 	def add_humains(self):
 		if self.ids['prénom'].text != '' and self.ids['téléphone'].text != '' and self.ids['statut'].text != '' and self.ids['taux_h'].text != '' and self.ids['taille_pentalon'].text != '' and self.ids['pointure'].text != '':	
 
@@ -60,40 +127,13 @@ class Humains(Screen):
 			cmd="SELECT * FROM HUMAINS WHERE TEL = %s OR PRENOM = %s"	
 
 			if len(sql(cmd, data)) == 0:
-				if self.ids['statut'].text == 'Stagiaire':
-					data=(
-						self.ids['prénom'].text,
-						self.ids['téléphone'].text,
-						self.ids['statut'].text,
-						0.0,
-						'0',
-						'0'
-					)
-
-				else:
-					data=(
-						self.ids['prénom'].text,
-						self.ids['téléphone'].text,
-						self.ids['statut'].text,
-						self.ids['taux_h'].text,
-						self.ids['taille_pentalon'].text,
-						self.ids['pointure'].text
-					)
-
-				cmd="INSERT INTO HUMAINS(PRENOM, TEL, STATUT, TAUX_H, TAILLE_PENTALON, POINTURE) VALUES (%s,%s,%s,%s,%s,%s)"
-
-
 				try:
-					
-					print(sql(cmd, data))
-					self.app.build()
-					Snackbar(text="Merci !", padding="20dp").open()
-
+					self.sql_add_humaine()
 				except:
 					Snackbar(text="Nop...", padding="20dp").open()
 
 			else:
-				Snackbar(text="Ce profil existe déjà", padding="20dp").open()	
+				self.alert_dialog()
 
 		else:
 
@@ -112,6 +152,30 @@ class Humains(Screen):
 		return
 
 
+	def alert_dialog(self):
+		if not self.dialog_confirm_modify_profil:
+			self.dialog_confirm_modify_profil = MDDialog(
+			title="Attention",
+			text="Voulez vous vraiment modifier ce profil ?",
+			buttons=[
+				MDFlatButton(text="Continuer", on_release=self.alert_dialog_continuer),
+				],
+			)
+		self.dialog_confirm_modify_profil.open()
+
+
+	def alert_dialog_continuer(self, inst):
+
+		data = profil[0]
+		print(data)
+
+		cmd="DELETE FROM HUMAINS WHERE PRENOM=%s AND TEL=%s AND STATUT=%s AND TAUX_H=%s AND TAILLE_PENTALON=%s AND POINTURE=%s"
+		sql(cmd, data)
+
+		self.sql_add_humaine()
+		print(profil)
+		self.dialog_confirm_modify_profil.dismiss()
+
 class HumainsList(Screen):
 
 	def __init__(self, **kwargs):
@@ -123,7 +187,7 @@ class HumainsList(Screen):
 		for i in self.app.ls_humains:
 
 			self.ids.container.add_widget(
-				TwoLineAvatarIconListItem(text="{}".format(i[0]),secondary_text= "{}".format(i[1]), on_release=self.test)
+				Item(text="{}".format(i[0]),secondary_text= "{}".format(i[1]), on_release=self.test)
 			)
 
 

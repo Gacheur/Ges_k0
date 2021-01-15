@@ -2,18 +2,18 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 from kivy.core.window import Window
-#from kivy.utils import platform
+from kivy.utils import platform
 
 Window.softinput_mode = 'below_target'
 
-#if platform == 'linux':
-#Window.size = (425,700)
+if platform == 'linux':
+	Window.size = (425,700)
 
 from kivymd.uix.snackbar import Snackbar
 
 
 from baseclass.heures import Heures
-from baseclass.humains import Humains
+import baseclass.humains 
 from baseclass.chantiers import Chantiers
 from baseclass.parametres import Parametres
 from baseclass.sql import sql
@@ -22,9 +22,6 @@ import version
 import configparser
 import mysql.connector
 
-import locale
-#locale.setlocale(locale.LC_TIME,'')
-print(locale.setlocale(locale.LC_TIME,''))
 
 class Accueil(Screen):
 	pass

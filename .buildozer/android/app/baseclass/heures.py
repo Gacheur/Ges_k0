@@ -1,16 +1,13 @@
 from kivy.uix.screenmanager import Screen
 from kivymd.app import MDApp
 from kivymd.uix.picker import MDDatePicker
-from kivymd.uix.list import OneLineListItem, OneLineAvatarIconListItem, OneLineAvatarListItem
+from kivymd.uix.list import OneLineListItem
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.snackbar import Snackbar
 from baseclass.sql import sql
 from threading import Thread
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
-from kivymd.uix.list import IconRightWidget,IconLeftWidget
-from kivy.properties import StringProperty
-from kivy.metrics import dp
 from kivymd.uix.behaviors import TouchBehavior
 from datetime import date
 
@@ -18,6 +15,11 @@ from datetime import date
 class Item(OneLineListItem, TouchBehavior):
 
 	dialog_remove_heures= None
+	def __init__(self, **kw):
+
+		super().__init__(**kw)
+		self.app = MDApp.get_running_app()
+		self.week_num = ()
 
 	def on_long_touch(self, *args):
 		print("<on_long_touch> event")
@@ -50,6 +52,7 @@ class Item(OneLineListItem, TouchBehavior):
 		sql(cmd, data)
 
 		self.parent.remove_widget(self)
+		self.app.ls_heures.remove(data)
 		self.dialog_remove_heures.dismiss()
 
 
@@ -60,10 +63,38 @@ class Heures(Screen):
 	dialog_remove_heures= None
 	target_rm = None
 
+
 	def __init__(self, **kw):
 		super().__init__(**kw)
 		self.app = MDApp.get_running_app()
 		self.week_num = ()
+
+
+	def spin_add_heures(self):
+
+		self.ids.progress.active= True
+		p = Thread(target=self.add_heures)
+		p.start()
+
+
+	def sql_add_heures(self):
+
+		cmd="INSERT INTO HEURES(NOM, CHANTIERS, NB_HEURES, DATE, SEMAINE) VALUES (%s,%s,%s,%s,%s)"
+
+		data = (
+			self.ids['data_pers'].text,
+			self.ids['data_chantier'].text,
+			self.ids['data_time'].text, 
+			self.ids['data_date'].text,
+			self.week_num
+		)
+
+		sql(cmd, data)
+		self.add_item_containt('   '.join(data), index= len(self.ids.container.children))
+
+		self.app.ls_heures.insert(0, data)
+
+		Snackbar(text="Merci !", padding="20dp").open()
 
 
 	def add_item_containt(self, text, index):
@@ -71,12 +102,20 @@ class Heures(Screen):
 		new_line = Item(text=text)
 		self.ids.container.add_widget(new_line, index=index)
 
+	def remove_label(self):
+
+		self.ids.data_time.text =''
+		self.ids.data_date.text =''
+		self.ids.data_pers.text =''
+		self.ids.data_chantier.text =''
 
 	def on_leave(self):
 
 		while self.ids.container.children:
 			for i in self.ids.container.children:
 				self.ids.container.remove_widget(i)
+
+
 
 	def on_enter(self):
 
@@ -88,7 +127,7 @@ class Heures(Screen):
 			None
 
 
-		self.ids['data_date'].text = str(date.today().strftime('%A-%d-%B'))
+		self.ids['data_date'].text = str(date.today().strftime('%d-%m'))
 		self.week_num = str('S{}'.format(date.today().isocalendar()[1]))
 		self.ids['data_time'].text = '8h'
 
@@ -99,39 +138,21 @@ class Heures(Screen):
 			
 		#ls personnes
 		ls_i_personne = [{"text": "{}".format(i[0])} for i in self.app.ls_humains]
-		self.menu = MDDropdownMenu(
-			caller=self.ids.pick_pers,
-			items=ls_i_personne,
-			position="bottom",
-			width_mult=3,
-		)
+		self.menu = MDDropdownMenu(caller=self.ids.pick_pers, items=ls_i_personne, position="bottom", width_mult=3)
 		self.menu.bind(on_release=self.set_item)
 
 
 		#ls chantier
 		ls_i_chantier = [{"text": "{}".format(i[0])} for i in self.app.ls_chantiers]
-		self.menu_chantier = MDDropdownMenu(
-			caller=self.ids.pick_chantier,
-			items=ls_i_chantier,
-			position="bottom",
-			width_mult=3,
-		)
+		self.menu_chantier = MDDropdownMenu(caller=self.ids.pick_chantier, items=ls_i_chantier, position="bottom", width_mult=3)
 		self.menu_chantier.bind(on_release=self.get_chantier)
 
 		#ls nb_heures
 		ls_i_nb_heures = [{"text":"{}h".format(i+1)} for i in range(9)]
 		ls_i_nb_heures.append({'text':'Mal'})
 		ls_i_nb_heures.append({'text':'Abs'})
-		self.menu_time = MDDropdownMenu(
-			caller=self.ids.pick_time,
-			items=ls_i_nb_heures,
-			position="bottom",
-			width_mult=2,
-		)
+		self.menu_time = MDDropdownMenu(caller=self.ids.pick_time,items=ls_i_nb_heures,position="bottom",width_mult=2)
 		self.menu_time.bind(on_release=self.get_time)
-
-
-
 
 
 
@@ -152,26 +173,9 @@ class Heures(Screen):
 		self.menu_chantier.dismiss()
 
 	def get_date(self, date):
-		self.ids['data_date'].text = str(date.strftime('%A-%d-%B'))
+		self.ids['data_date'].text = str(date.strftime('%d-%m'))
 		self.week_num = str('S{}'.format(date.isocalendar()[1]))
 
-
-
-
-	def remove_label(self):
-
-		self.ids.data_time.text =''
-		self.ids.data_date.text =''
-		self.ids.data_pers.text =''
-		self.ids.data_chantier.text =''
-
-
-	def spin_add_heures(self):
-
-
-		self.ids.progress.active= True
-		p = Thread(target=self.add_heures)
-		p.start()
 
 
 	def add_heures(self):
@@ -185,25 +189,8 @@ class Heures(Screen):
 			if len(sql(cmd, data)) == 0:
 
 				try:
-					cmd="INSERT INTO HEURES(NOM, CHANTIERS, NB_HEURES, DATE, SEMAINE) VALUES (%s,%s,%s,%s,%s)"
 
-					data = (
-						self.ids['data_pers'].text,
-						self.ids['data_chantier'].text,
-						self.ids['data_time'].text, 
-						self.ids['data_date'].text,
-						self.week_num
-
-					)
-					print(data)
-
-
-					sql(cmd, data)
-					self.app.build()
-
-					self.add_item_containt('   '.join(data), index= len(self.ids.container.children))
-
-					Snackbar(text="Merci !", padding="20dp").open()
+					self.sql_add_heures()
 
 				except:
 					Snackbar(text="Nop...", padding="20dp").open()
@@ -232,25 +219,7 @@ class Heures(Screen):
 
 	def alert_dialog_continuer(self, inst):
 
-		cmd="INSERT INTO HEURES(NOM, CHANTIERS, NB_HEURES, DATE, SEMAINE) VALUES (%s,%s,%s,%s,%s)"
-
-		data = (
-			self.ids['data_pers'].text,
-			self.ids['data_chantier'].text,
-			self.ids['data_time'].text, 
-			self.ids['data_date'].text,
-			self.week_num
-
-		)
-		print(data)
-
-
-		sql(cmd, data)
-		self.app.build()
-
-		self.add_item_containt('   '.join(data), 0)
-
-		Snackbar(text="Merci !", padding="20dp").open()
+		self.sql_add_heures()
 		self.dialog.dismiss()
 
 
