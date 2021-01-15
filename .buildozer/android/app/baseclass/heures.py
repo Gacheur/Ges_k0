@@ -189,7 +189,6 @@ class Heures(Screen):
 			if len(sql(cmd, data)) == 0:
 
 				try:
-
 					self.sql_add_heures()
 
 				except:

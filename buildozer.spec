@@ -89,7 +89,7 @@ fullscreen = 0
 # red, blue, green, black, white, gray, cyan, magenta, yellow, lightgray,
 # darkgray, grey, lightgrey, darkgrey, aqua, fuchsia, lime, maroon, navy,
 # olive, purple, silver, teal.
-android.presplash_color = lightgrey
+android.presplash_color = white
 
 # (list) Permissions
 android.permissions = INTERNET, CAMERA

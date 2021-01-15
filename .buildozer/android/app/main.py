@@ -13,7 +13,7 @@ from kivymd.uix.snackbar import Snackbar
 
 
 from baseclass.heures import Heures
-from baseclass.humains import Humains
+import baseclass.humains 
 from baseclass.chantiers import Chantiers
 from baseclass.parametres import Parametres
 from baseclass.sql import sql

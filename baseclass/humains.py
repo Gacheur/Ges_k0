@@ -171,6 +171,7 @@ class Humains(Screen):
 
 		cmd="DELETE FROM HUMAINS WHERE PRENOM=%s AND TEL=%s AND STATUT=%s AND TAUX_H=%s AND TAILLE_PENTALON=%s AND POINTURE=%s"
 		sql(cmd, data)
+		self.app.ls_humains.remove(data)
 
 		self.sql_add_humaine()
 		print(profil)
