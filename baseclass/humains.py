@@ -6,9 +6,10 @@ from kivymd.uix.snackbar import Snackbar
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 from kivy.clock import Clock
-from baseclass.sql import sql
+#from baseclass.sql import sql
 from threading import Thread
 from kivymd.uix.behaviors import TouchBehavior
+from kivymd.uix.textfield import MDTextField
 
 
 
@@ -28,7 +29,7 @@ class Item(TwoLineListItem, TouchBehavior):
 		cmd="SELECT * FROM HUMAINS WHERE PRENOM =%s"
 
 		global profil
-		profil = sql(cmd, data)
+		profil = self.app.sql.select_insert_delete(cmd, data)
 
 		print("<on_long_touch> event")
 		print(self.text)
@@ -57,6 +58,9 @@ class Humains(Screen):
 		self.app = MDApp.get_running_app()
 
 
+	def on_pre_enter(self):
+		self.ids.progress.active= False
+
 	def on_enter(self):
 
 		menu_items = [{"text": "Associer"},{"text": "Apprenti"},{"text": "Renégat"},{"text": "Stagiaire"}]
@@ -68,6 +72,8 @@ class Humains(Screen):
 			width_mult=3,
 		)
 		self.menu_statut.bind(on_release=self.get_statut)
+
+		
 
 
 
@@ -88,6 +94,7 @@ class Humains(Screen):
 
 		p = Thread(target=self.add_humains)
 		p.start()
+		
 
 
 	def sql_add_humaine(self):
@@ -115,8 +122,19 @@ class Humains(Screen):
 		cmd="INSERT INTO HUMAINS(PRENOM, TEL, STATUT, TAUX_H, TAILLE_PENTALON, POINTURE) VALUES (%s,%s,%s,%s,%s,%s)"
 
 			
-		print(sql(cmd, data))
+		self.app.sql.select_insert_delete(cmd, data)
 		self.app.ls_humains.insert(0, data)
+
+
+
+		self.app.config['USER'] = {
+			"principal" : "{}".format(self.ids['prénom'].text)
+			}
+
+		with open('conf.ini', 'w') as configfile:
+			self.app.config.write(configfile)
+
+			
 		Snackbar(text="Merci !", padding="20dp").open()
 
 
@@ -126,7 +144,7 @@ class Humains(Screen):
 			data=(self.ids['téléphone'].text, self.ids['prénom'].text)
 			cmd="SELECT * FROM HUMAINS WHERE TEL = %s OR PRENOM = %s"	
 
-			if len(sql(cmd, data)) == 0:
+			if len(self.app.sql.select_insert_delete(cmd, data)) == 0:
 				try:
 					self.sql_add_humaine()
 				except:
@@ -170,12 +188,15 @@ class Humains(Screen):
 		print(data)
 
 		cmd="DELETE FROM HUMAINS WHERE PRENOM=%s AND TEL=%s AND STATUT=%s AND TAUX_H=%s AND TAILLE_PENTALON=%s AND POINTURE=%s"
-		sql(cmd, data)
+		self.app.sql.select_insert_delete(cmd, data)
 		self.app.ls_humains.remove(data)
 
 		self.sql_add_humaine()
 		print(profil)
+
 		self.dialog_confirm_modify_profil.dismiss()
+
+
 
 class HumainsList(Screen):
 

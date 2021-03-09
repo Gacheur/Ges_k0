@@ -2,10 +2,10 @@
   /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libwebp-1.0.0/src/dsp/cpu.c \
   /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libwebp-1.0.0/src/dsp/dsp.h \
   /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libwebp-1.0.0/src/webp/types.h \
-  /home/t/.buildozer/android/platform/android-ndk-r19c/sources/android/cpufeatures/cpu-features.h
+  /home/t/.buildozer/android/platform/android-ndk-r19b/sources/android/cpufeatures/cpu-features.h
 
 /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libwebp-1.0.0/src/dsp/dsp.h:
 
 /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libwebp-1.0.0/src/webp/types.h:
 
-/home/t/.buildozer/android/platform/android-ndk-r19c/sources/android/cpufeatures/cpu-features.h:
+/home/t/.buildozer/android/platform/android-ndk-r19b/sources/android/cpufeatures/cpu-features.h:

@@ -4,8 +4,8 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.test.ges_k0"
-      android:versionCode="721203213"
-      android:versionName="2020.1213"
+      android:versionCode="721202409"
+      android:versionName="2021.0309"
       android:installLocation="auto">
 
     <supports-screens
@@ -29,10 +29,6 @@
     
     
     <uses-permission android:name="android.permission.INTERNET" />
-    
-    
-    
-    <uses-permission android:name="android.permission.CAMERA" />
     
     
 

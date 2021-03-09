@@ -9,7 +9,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
 
-from baseclass.sql import sql
+#from baseclass.sql import sql
 from threading import Thread
 
 import configparser
@@ -47,46 +47,26 @@ class Parametres(Screen):
 		except:
 			None
 
-	def spin_active(self):
 
 
-		self.ids.progress.active= True
-		p = Thread(target=self.show_theme_picker)
-		p.start()
+	def cancel(self, inst):
+
+		self.app.config['THEME'] = {
+			"primary" : "{}".format(self.app.theme_cls.primary_palette),
+			"accent" : "{}".format(self.app.theme_cls.accent_palette),
+			"theme" : "{}".format(self.app.theme_cls.theme_style),
+			}
+
+		with open('conf.ini', 'w') as configfile:
+			self.app.config.write(configfile)
 
 
 	def show_theme_picker(self):
 
-		for i in self.ids.container.children:
-
-			if i.text == 'Theme':
-				i.text = 'Appuyer pour sauver ce theme'
+		theme_dialog = MDThemePicker(on_dismiss=self.cancel)
+		theme_dialog.open()
 
 
-				theme_dialog = MDThemePicker()
-				theme_dialog.open()
-
-				break
-
-			if i.text == 'Appuyer pour sauver ce theme':
-				i.text = 'Theme'
-
-
-
-				self.app.config['THEME'] = {
-					"primary" : "{}".format(self.app.theme_cls.primary_palette),
-					"accent" : "{}".format(self.app.theme_cls.accent_palette),
-					"theme" : "{}".format(self.app.theme_cls.theme_style),
-					}
-
-				with open('conf.ini', 'w') as configfile:
-					self.app.config.write(configfile)
-
-
-				break
-
-		self.ids.progress.active= False
-		return
 
 	def set_item(self, instance_menu, instance_menu_item):
 

@@ -2,21 +2,22 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 from kivy.core.window import Window
+Window.softinput_mode = 'below_target'
 from kivy.utils import platform
 
-Window.softinput_mode = 'below_target'
 
 if platform == 'linux':
 	Window.size = (425,700)
+
 
 from kivymd.uix.snackbar import Snackbar
 
 
 from baseclass.heures import Heures
-import baseclass.humains 
+import baseclass.humains
 from baseclass.chantiers import Chantiers
 from baseclass.parametres import Parametres
-from baseclass.sql import sql
+from baseclass.sql import DatabaseCom
 
 import version
 import configparser
@@ -31,7 +32,7 @@ class MainApp(MDApp):
 
 	def build(self):
 
-	
+		self.sql = DatabaseCom()
 		self.config = configparser.ConfigParser()
 		
 		try:
@@ -45,23 +46,26 @@ class MainApp(MDApp):
 			None
 
 
+		print(self.sql.select_insert_delete("SELECT VERSION FROM LOG")[0][0])
+
+
 		try:
 
 			self.title = version.__version__
-			irl_version = sql("SELECT VERSION FROM LOG")[0][0]
+			irl_version = self.sql.select_insert_delete("SELECT VERSION FROM LOG")[0][0]
 
 			print(self.title, irl_version)
 
 			if self.title == irl_version:
 
-				self.ls_humains = sql("SELECT * from HUMAINS")
+				self.ls_humains = self.sql.select_insert_delete("SELECT * from HUMAINS")
 				print(self.ls_humains)
 
-				self.ls_chantiers = sql("SELECT * from CHANTIERS")
+				self.ls_chantiers = self.sql.select_insert_delete("SELECT * from CHANTIERS")
 				print(self.ls_chantiers)
 
-				self.ls_heures = sql("SELECT * from HEURES")
-				self.ls_heures.reverse()
+				self.ls_heures = self.sql.select_insert_delete("SELECT * from HEURES")
+				self.ls_heures.reverse() # Replace la data dans le bon sens
 				print(self.ls_heures)
 
 				return Builder.load_file("main.kv")
@@ -93,4 +97,6 @@ class MainApp(MDApp):
 
 			Snackbar(text="Adresse invalide", padding="20dp").open()
 
-MainApp().run()
+
+if __name__ == "__main__":
+	MainApp().run()

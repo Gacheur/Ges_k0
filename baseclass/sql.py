@@ -6,33 +6,29 @@ import configparser
 config = configparser.ConfigParser()
 config.read('conf.ini')
 
-def sql(*args):
 
-	conn = mysql.connector.connect(host='{}'.format(config['SERVER']['url']),database='TDC')
-	cursor = conn.cursor()
+class DatabaseCom():
 
-	cursor.execute(*args)
+	def __init__(self, *args):
+		#conn = mysql.connector.connect(host='{}'.format(config['SERVER']['url']),database='TDC')
+		self.conn = mysql.connector.connect(host='tdc.ovh',database='TDC')
+		self.cursor = self.conn.cursor()
 
 
-	try: #Fonction SELECT
+	def select_insert_delete(self, *args):
 		
-		out = cursor.fetchall()
+		self.cursor.execute(*args)
 
-	except: #Fonction INSERT
+		try: #Fonction SELECT
+			
+			out = self.cursor.fetchall()
 
-		out = None
+		except: #Fonction INSERT DELETE
 
-	conn.commit()
-	cursor.close()
-	conn.close()
+			out = '+ - OK'
 
-	return out
+		self.conn.commit()
+		#cursor.close()
+		#conn.close()
 
-
-#data = ['2020-11-21', 'Elie']
-#cmd = "SELECT * from HEURES WHERE DATE=%s AND NOM=%s"
-
-#data=['+33667936781','Tom']
-#cmd="SELECT * FROM HUMAINS WHERE TEL = %s OR PRENOM = %s"	
-
-#print(sql(cmd, data))
+		return out

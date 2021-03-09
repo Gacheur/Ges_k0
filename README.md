@@ -5,7 +5,7 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Ges_k0 est une application multi platerforme de gestion connectée et collective destinée aux personnes travaillant dans le batiment. Son but est de fluidifier et faciliter les echange d'information sur les points suivants:
+Ges_k0 est une application multi platerforme de gestion connectée et collective destinée aux personnes travaillant dans le batiment. Son but est de fluidifier et faciliter les échanges d'informations sur les points suivants:
 
   - Renseignement des heures
   - Gestion des chantiers
@@ -49,11 +49,11 @@ Ges_k0 est un logiciel libre développé par quelques bonnes ames volontaires. I
 
 # Todos
 
- - Sana objet
+ - Sans objet
 
 
-License
+# License
 
-Libre
+ - Libre
 
-**Be excellent to each other**
+*Be excellent to each other

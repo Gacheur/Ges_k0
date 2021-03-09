@@ -5,7 +5,7 @@ from kivymd.uix.list import TwoLineAvatarIconListItem, IconRightWidget
 from kivymd.uix.menu import MDDropdownMenu
 from kivy.properties import ObjectProperty
 from kivymd.uix.snackbar import Snackbar
-from baseclass.sql import sql
+#from baseclass.sql import sql
 from threading import Thread
 
 class Chantiers(Screen):
@@ -13,6 +13,10 @@ class Chantiers(Screen):
 	def __init__(self, **kw):
 		super().__init__(**kw)
 		self.app = MDApp.get_running_app()
+
+
+	def on_pre_enter(self):
+		self.ids.progress.active= False
 
 
 	def spin_add_chantier(self):
@@ -29,11 +33,11 @@ class Chantiers(Screen):
 			data=(self.ids['nom'].text,self.ids['localisation'].text)
 			cmd="SELECT * FROM CHANTIERS WHERE NOM =%s OR LOCALISATION =%s"			
 
-			if len(sql(cmd, data)) == 0:
+			if len(self.app.sql.select_insert_delete(cmd, data)) == 0:
 				try:
 					cmd="INSERT INTO CHANTIERS(NOM, LOCALISATION) VALUES (%s,%s)"
 			
-					sql(cmd, data)
+					self.app.sql.select_insert_delete(cmd, data)
 					self.app.build()
 					Snackbar(text="Merci !", padding="20dp").open()
 

@@ -42,8 +42,11 @@ requirements =
 	kivy==2.0.0,
 	https://github.com/kivymd/KivyMD/archive/master.zip,
 	mysql-connector-python,
+	Pillow,
 	sdl2_ttf==2.0.15,
 	configparser,
+	#android,
+
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -92,22 +95,23 @@ fullscreen = 0
 android.presplash_color = white
 
 # (list) Permissions
-android.permissions = INTERNET, CAMERA
+android.permissions = INTERNET
+#CAMERA, WRITE_EXTERNAL_STORAGE
 
 # (int) Target Android API, should be as high as possible.
-#android.api = 27
+android.api = 27
 
 # (int) Minimum API your APK will support.
-#android.minapi = 21
+android.minapi = 21
 
 # (int) Android SDK version to use
-#android.sdk = 20
+android.sdk = 20
 
 # (str) Android NDK version to use
-#android.ndk = 19b
+android.ndk = 19b
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
-#android.ndk_api = 21
+android.ndk_api = 21
 
 # (bool) Use --private data storage (True) or --dir public storage (False)
 #android.private_storage = True
@@ -131,6 +135,8 @@ android.permissions = INTERNET, CAMERA
 # the default, you will be shown the license when first running
 # buildozer.
 # android.accept_sdk_license = False
+
+android.accept_sdk_license = True
 
 # (str) Android entry point, default is ok for Kivy-based app
 #android.entrypoint = org.renpy.android.PythonActivity
@@ -243,7 +249,7 @@ android.arch = armeabi-v7a
 #p4a.branch = master
 
 # (str) python-for-android git clone directory (if empty, it will be automatically cloned from github)
-#p4a.source_dir =
+#p4a.source_dir = /home/t/python-for-android
 
 # (str) The directory in which python-for-android should look for your own build recipes (if any)
 #p4a.local_recipes =

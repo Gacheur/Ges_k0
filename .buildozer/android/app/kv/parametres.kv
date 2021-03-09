@@ -9,8 +9,9 @@
 				id:container
 
 				OneLineListItem:
+					id:pop
 					text:"Theme"
-					on_release: root.spin_active()
+					on_release: root.show_theme_picker()
 
 				TwoLineListItem:
 					id: main_user
@@ -26,13 +27,6 @@
 				TwoLineListItem:
 					text: "Version"
 					secondary_text: str(app.title)
-
-	MDSpinner:
-		id: progress
-		size_hint: None, None
-		size: dp(46), dp(46)
-		pos_hint: {'center_x': .5, 'center_y': .5}
-		active: False
 
 
 <Content>

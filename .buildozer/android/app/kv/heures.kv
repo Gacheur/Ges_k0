@@ -2,17 +2,14 @@
 	name: 'heures'
 
 
-
 	MDFloatLayout:
-
 
 		MDSpinner:
 			id: progress
 			size_hint: None, None
 			size: dp(46), dp(46)
 			pos_hint: {'center_x': .5, 'center_y': .5}
-			active: False
-
+			
 
 		MDFloatingActionButton:
 			id:pick_time
@@ -20,7 +17,6 @@
 			icon: "clock-outline"
 			opposite_colors: True
 			on_press: root.menu_time.open()
-
 			md_bg_color: app.theme_cls.primary_color
 
 		MDLabel:
@@ -35,14 +31,13 @@
 			pos_hint:{"center_y":.9, "center_x":2/5}
 			icon: "calendar"
 			#user_font_size: "40sp"
-			on_press: root.show_date_picker()
+			on_press:root.show_date_picker()
 			md_bg_color: app.theme_cls.primary_color
 
 		MDLabel:
 			id:data_date
 			pos_hint:{"center_y":.8, "center_x":2/5}
 			halign:"center"
-
 
 
 		MDFloatingActionButton:

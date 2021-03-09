@@ -442,11 +442,13 @@ import re
 import sys
 
 from kivy.animation import Animation
+from kivy.clock import Clock
 from kivy.lang import Builder
 from kivy.metrics import dp, sp
 from kivy.properties import (
     BooleanProperty,
     ColorProperty,
+    ListProperty,
     NumericProperty,
     ObjectProperty,
     OptionProperty,
@@ -500,7 +502,7 @@ Builder.load_string(
 
         # Texture of right Icon.
         Color:
-            rgba: self.icon_right_color
+            rgba: self.icon_right_color if self.focus else self._current_hint_text_color
         Rectangle:
             texture: self._lbl_icon_right.texture
             size: self._lbl_icon_right.texture_size if self.icon_right else (0, 0)
@@ -541,7 +543,9 @@ Builder.load_string(
 
         # "rectangle" mode
         Color:
-            rgba: self._current_line_color if not self.text_color else self.text_color
+            rgba:
+                (self._current_line_color if not self.text_color else self.text_color) \
+                if self.focus else self._current_hint_text_color
         Line:
             width: dp(1) if root.mode == "rectangle" else dp(0.00001)
             points:
@@ -561,7 +565,7 @@ Builder.load_string(
         RoundedRectangle:
             pos: self.x, self.y
             size: self.width, self.height + dp(8)
-            radius: (10, 10, 0, 0, 0)
+            radius: root.radius
 
     font_name: "Roboto" if not root.font_name else root.font_name
     foreground_color: self.theme_cls.text_color
@@ -638,20 +642,11 @@ Builder.load_string(
             pos: self.pos
             size: self.size
 
-        Color:
-            rgba: self.line_color
-        Line:
-            points: self.pos[0] , self.pos[1], self.pos[0] + self.size[0], self.pos[1]
-        Line:
-            points: self.pos[0], self.pos[1] + self.size[1], self.pos[0] + self.size[0], self.pos[1] + self.size[1]
-        Line:
-            ellipse: self.pos[0] - self.size[1] / 2, self.pos[1], self.size[1], self.size[1], 180, 360
-        Line:
-            ellipse: self.size[0] + self.pos[0] - self.size[1] / 2.0, self.pos[1], self.size[1], self.size[1], 360, 540
-
         # Texture of left Icon.
         Color:
-            rgba: self.icon_left_color
+            rgba:
+                self.icon_left_color \
+                if self.focus else self.theme_cls.disabled_hint_text_color
         Rectangle:
             texture: self._lbl_icon_left.texture
             size:
@@ -663,7 +658,9 @@ Builder.load_string(
 
         # Texture of right Icon.
         Color:
-            rgba: self.icon_right_color
+            rgba:
+                self.icon_right_color \
+                if self.focus else self.theme_cls.disabled_hint_text_color
         Rectangle:
             texture: self._lbl_icon_right.texture
             size:
@@ -676,6 +673,18 @@ Builder.load_string(
         Color:
             rgba:
                 self.hint_text_color if not self.text else root.foreground_color
+
+    canvas.after:
+        Color:
+            rgba: self.line_color if self.focus else self.theme_cls.disabled_hint_text_color
+        Line:
+            points: self.pos[0] , self.pos[1], self.pos[0] + self.size[0], self.pos[1]
+        Line:
+            points: self.pos[0], self.pos[1] + self.size[1], self.pos[0] + self.size[0], self.pos[1] + self.size[1]
+        Line:
+            ellipse: self.pos[0] - self.size[1] / 2, self.pos[1], self.size[1], self.size[1], 180, 360
+        Line:
+            ellipse: self.size[0] + self.pos[0] - self.size[1] / 2.0, self.pos[1], self.size[1], self.size[1], 360, 540
 """
 )
 
@@ -816,7 +825,7 @@ class MDTextField(ThemableBehavior, TextInput):
     and defaults to `None`.
     """
 
-    fill_color = ColorProperty((0, 0, 0, 0))
+    fill_color = ColorProperty([0, 0, 0, 0])
     """
     The background color of the fill in rgba format when the ``mode`` parameter
     is "fill".
@@ -891,6 +900,14 @@ class MDTextField(ThemableBehavior, TextInput):
     defaults to `0`.
     """
 
+    radius = ListProperty([10, 10, 0, 0])
+    """
+    The corner radius for a text field in `fill` mode.
+
+    :attr:`radius` is a :class:`~kivy.properties.ListProperty` and
+    defaults to `[10, 10, 0, 0]`.
+    """
+
     _text_len_error = BooleanProperty(False)
     _hint_lbl_font_size = NumericProperty("16sp")
     _line_blank_space_right_point = NumericProperty(0)
@@ -922,7 +939,7 @@ class MDTextField(ThemableBehavior, TextInput):
             _hint_lbl_font_size=self._hint_lbl.setter("font_size"),
             helper_text_mode=self._set_message_mode,
             max_text_length=self._set_max_text_length,
-            text=self.on_text,
+            text=self.set_text,
         )
         self.theme_cls.bind(
             primary_color=self._update_primary_color,
@@ -931,6 +948,11 @@ class MDTextField(ThemableBehavior, TextInput):
         )
         self.has_had_text = False
         self._better_texture_size = None
+        Clock.schedule_once(self.check_text)
+        self._set_msg(self, self.helper_text)
+
+    def check_text(self, interval):
+        self.set_text(self, self.text)
 
     def set_objects_labels(self):
         """Creates labels objects for the parameters
@@ -1095,7 +1117,7 @@ class MDTextField(ThemableBehavior, TextInput):
             elif self.color_mode == "custom":
                 self._update_colors(self.line_color_focus)
 
-    def on_text(self, instance, text):
+    def set_text(self, instance, text):
         self.text = re.sub("\n", " ", text) if not self.multiline else text
         if len(text) > 0:
             self.has_had_text = True
@@ -1103,22 +1125,22 @@ class MDTextField(ThemableBehavior, TextInput):
             self._right_msg_lbl.text = f"{len(text)}/{self.max_text_length}"
         self._set_text_len_error()
         if self.error or self._text_len_error:
-            if self.focus:
-                self._anim_current_line_color(self.error_color)
-                if self.helper_text_mode == "on_error" and (
-                    self.error or self._text_len_error
-                ):
-                    self._anim_current_error_color(self.error_color)
-                if self._text_len_error:
-                    self._anim_current_right_lbl_color(self.error_color)
+            self._anim_current_line_color(self.error_color)
+            if self.helper_text_mode == "on_error" and (
+                self.error or self._text_len_error
+            ):
+                self._anim_current_error_color(self.error_color)
+            if self._text_len_error:
+                self._anim_current_right_lbl_color(self.error_color)
         else:
-            if self.focus:
-                self._anim_current_right_lbl_color(
-                    self.theme_cls.disabled_hint_text_color
-                )
-                self._anim_current_line_color(self.line_color_focus)
-                if self.helper_text_mode == "on_error":
-                    self._anim_current_error_color((0, 0, 0, 0))
+            self._anim_current_right_lbl_color(
+                self.theme_cls.disabled_hint_text_color
+            )
+            self._anim_current_line_color(self.line_color_focus)
+            if self.helper_text_mode == "on_error":
+                self._anim_current_error_color((0, 0, 0, 0))
+            self.on_focus(self, self.focus)
+
         if len(self.text) != 0 and not self.focus:
             self._hint_y = dp(14)
             self._hint_lbl_font_size = sp(12)
@@ -1154,7 +1176,11 @@ class MDTextField(ThemableBehavior, TextInput):
         # https://github.com/HeaTTheatR/KivyMD-data/raw/master/gallery/kivymddoc/_get_has_error.png
         if not color:
             line_color = self.line_color_focus
-            hint_text_color = self.theme_cls.disabled_hint_text_color
+            hint_text_color = (
+                self.theme_cls.disabled_hint_text_color
+                if not self.current_hint_text_color
+                else self.current_hint_text_color
+            )
             right_lbl_color = (0, 0, 0, 0)
         else:
             line_color = color

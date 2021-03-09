@@ -554,20 +554,19 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.utils import get_color_from_hex
 
-from kivymd import images_path
 from kivymd.color_definitions import colors
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.behaviors import (
     BackgroundColorBehavior,
     FocusBehavior,
-    RectangularElevationBehavior,
     RectangularRippleBehavior,
+    RoundedRectangularElevationBehavior,
 )
 
 Builder.load_string(
     """
 <MDCardSwipeLayerBox>:
-    canvas:
+    canvas.before:
         Color:
             rgba: app.theme_cls.divider_color
         Rectangle:
@@ -576,10 +575,13 @@ Builder.load_string(
 
 
 <MDCard>
-    canvas:
+    canvas.before:
+        Color:
+            rgba: self.md_bg_color
         RoundedRectangle:
             size: self.size
             pos: self.pos
+            radius: root.radius
             source: root.background
 
 
@@ -621,19 +623,12 @@ class MDSeparator(ThemableBehavior, BoxLayout):
 
 class MDCard(
     ThemableBehavior,
+    RoundedRectangularElevationBehavior,
     BackgroundColorBehavior,
-    RectangularElevationBehavior,
-    FocusBehavior,
     RectangularRippleBehavior,
+    FocusBehavior,
     BoxLayout,
 ):
-    background = StringProperty()
-    """
-    Background image path.
-
-    :attr:`background` is a :class:`~kivy.properties.StringProperty`
-    and defaults to `''`.
-    """
 
     focus_behavior = BooleanProperty(False)
     """
@@ -670,7 +665,7 @@ class MDCard(
         self.theme_cls.bind(theme_style=self.update_md_bg_color)
         Clock.schedule_once(lambda x: self._on_elevation(self.elevation))
         Clock.schedule_once(
-            lambda x: self._on_ripple_behavior(self.ripple_behavior)
+            lambda x: self.on_ripple_behavior(0, self.ripple_behavior)
         )
         self.update_md_bg_color(self, self.theme_cls.theme_style)
 
@@ -678,18 +673,14 @@ class MDCard(
         if self.md_bg_color in self._bg_color_map:
             self.md_bg_color = get_color_from_hex(colors[value]["CardsDialogs"])
 
-    def on_radius(self, instance, value):
-        if self.radius != [0, 0, 0, 0]:
-            self.background = f"{images_path}/transparent.png"
+    def on_ripple_behavior(self, instance, value):
+        self._no_ripple_effect = False if value else True
 
     def _on_elevation(self, value):
         if value is None:
             self.elevation = 6
         else:
             self.elevation = value
-
-    def _on_ripple_behavior(self, value):
-        self._no_ripple_effect = False if value else True
 
 
 class MDCardSwipe(RelativeLayout):

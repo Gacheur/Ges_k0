@@ -25,12 +25,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '30.0.3'
+    buildToolsVersion '31.0.0-rc1'
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 721203213
-        versionName '2020.1213'
+        versionCode 721202409
+        versionName '2021.0309'
     }
 
 	packagingOptions {

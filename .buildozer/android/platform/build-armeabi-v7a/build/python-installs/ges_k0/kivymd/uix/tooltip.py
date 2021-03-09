@@ -80,7 +80,6 @@ from kivy.properties import (
     StringProperty,
 )
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.widget import Widget
 
 from kivymd.font_definitions import theme_font_styles
 from kivymd.material_resources import DEVICE_TYPE
@@ -134,7 +133,7 @@ Builder.load_string(
 )
 
 
-class MDTooltip(ThemableBehavior, HoverBehavior, TouchBehavior, Widget):
+class MDTooltip(ThemableBehavior, HoverBehavior, TouchBehavior):
     tooltip_bg_color = ColorProperty(None)
     """
     Tooltip background color in ``rgba`` format.

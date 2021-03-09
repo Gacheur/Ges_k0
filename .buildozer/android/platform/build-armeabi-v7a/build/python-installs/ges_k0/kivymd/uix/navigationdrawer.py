@@ -304,6 +304,7 @@ from kivy.properties import (
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.screenmanager import ScreenManager
 
+from kivymd.uix.behaviors import FakeRectangularElevationBehavior
 from kivymd.uix.card import MDCard
 from kivymd.uix.toolbar import MDToolbar
 
@@ -319,7 +320,6 @@ Builder.load_string(
         (self.width * (self.open_progress - 1)) \
         if self.anchor == "left" \
         else (Window.width - self.width * self.open_progress)
-    elevation: root.elevation
 
     canvas:
         Clear
@@ -414,7 +414,7 @@ class MDNavigationLayout(FloatLayout):
         return super().add_widget(widget)
 
 
-class MDNavigationDrawer(MDCard):
+class MDNavigationDrawer(MDCard, FakeRectangularElevationBehavior):
     type = OptionProperty("modal", options=("standard", "modal"))
     """
     Type of drawer. Modal type will be on top of screen. Standard type will be
@@ -658,11 +658,9 @@ class MDNavigationDrawer(MDCard):
         ):
             pass
         if self.status == "closed":
-            self._elevation = 0
-            self._update_shadow(self, self._elevation)
+            self.opacity = 0
         else:
-            self._elevation = self.elevation
-            self._update_shadow(self, self._elevation)
+            self.opacity = 1
 
     def get_dist_from_side(self, x):
         if self.anchor == "left":

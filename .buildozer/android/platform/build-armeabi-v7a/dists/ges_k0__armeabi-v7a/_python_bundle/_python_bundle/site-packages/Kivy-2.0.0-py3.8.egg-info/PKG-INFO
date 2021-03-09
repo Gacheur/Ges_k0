@@ -180,12 +180,12 @@ Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
 Classifier: Topic :: Software Development :: User Interfaces
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
-Provides-Extra: full
-Provides-Extra: gstreamer
-Provides-Extra: tuio
-Provides-Extra: base
 Provides-Extra: dev
+Provides-Extra: tuio
+Provides-Extra: full
 Provides-Extra: media
-Provides-Extra: glew
 Provides-Extra: sdl2
+Provides-Extra: gstreamer
+Provides-Extra: base
+Provides-Extra: glew
 Provides-Extra: angle
