@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/jconfig.h
+/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/jconfig.h
 
-/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/jinclude.h
+/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/jinclude.h
 jconfig.h
-/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/jconfig.h
+/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/jconfig.h
 stddef.h
 -
 stdlib.h
@@ -24,9 +24,9 @@ strings.h
 string.h
 -
 
-/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/rdjpgcom.c
+/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/rdjpgcom.c
 jinclude.h
-/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/jinclude.h
+/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/jinclude.h
 locale.h
 -
 ctype.h

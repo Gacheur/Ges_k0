@@ -35,11 +35,11 @@ if test $? -eq 0 ; then
   dynamic_libs=`/usr/bin/pkg-config --libs freetype2`
   static_libs=`/usr/bin/pkg-config --static --libs freetype2`
 else
-  prefix="/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/freetype/armeabi-v7a__ndk_target_21/freetype"
-  exec_prefix="/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/freetype/armeabi-v7a__ndk_target_21/freetype"
+  prefix="/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/freetype/armeabi-v7a__ndk_target_21/freetype"
+  exec_prefix="/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/freetype/armeabi-v7a__ndk_target_21/freetype"
 
-  includedir="/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/freetype/armeabi-v7a__ndk_target_21/freetype/include"
-  libdir="/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/freetype/armeabi-v7a__ndk_target_21/freetype/lib"
+  includedir="/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/freetype/armeabi-v7a__ndk_target_21/freetype/include"
+  libdir="/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/freetype/armeabi-v7a__ndk_target_21/freetype/lib"
 
   version=23.1.17
 

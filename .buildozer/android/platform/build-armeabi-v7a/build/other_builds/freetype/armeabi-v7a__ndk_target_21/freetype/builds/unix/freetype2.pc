@@ -1,7 +1,7 @@
-prefix=/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/freetype/armeabi-v7a__ndk_target_21/freetype
-exec_prefix=/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/freetype/armeabi-v7a__ndk_target_21/freetype
-libdir=/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/freetype/armeabi-v7a__ndk_target_21/freetype/lib
-includedir=/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/freetype/armeabi-v7a__ndk_target_21/freetype/include
+prefix=/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/freetype/armeabi-v7a__ndk_target_21/freetype
+exec_prefix=/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/freetype/armeabi-v7a__ndk_target_21/freetype
+libdir=/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/freetype/armeabi-v7a__ndk_target_21/freetype/lib
+includedir=/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/freetype/armeabi-v7a__ndk_target_21/freetype/include
 
 Name: FreeType 2
 URL: https://freetype.org

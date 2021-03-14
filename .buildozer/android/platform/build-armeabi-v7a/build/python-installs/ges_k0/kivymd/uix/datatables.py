@@ -22,6 +22,8 @@ Components/DataTables
 
 __all__ = ("MDDataTable",)
 
+from collections import defaultdict
+
 from kivy.clock import Clock
 from kivy.lang import Builder
 from kivy.metrics import dp
@@ -63,7 +65,11 @@ Builder.load_string(
     canvas.before:
         Color:
             rgba:
-                (root.theme_cls.bg_darkest if root.theme_cls.theme_style == "Light" else root.theme_cls.bg_light) \
+                (\
+                root.theme_cls.bg_darkest \
+                if root.theme_cls.theme_style == "Light" else \
+                root.theme_cls.bg_light \
+                ) \
                 if self.selected else root.theme_cls.bg_normal
         Rectangle:
             pos: self.pos
@@ -82,8 +88,6 @@ Builder.load_string(
             size_hint: None, None
             size: 0, 0
             opacity: 0
-            on_active: root.select_check(self.active)
-            on_release: root._check_all(self.state)
 
         MDBoxLayout:
             id: inner_box
@@ -95,13 +99,18 @@ Builder.load_string(
                 size: ("24dp", "24dp") if root.icon else (0, 0)
                 icon: root.icon if root.icon else ""
                 theme_text_color: "Custom"
-                text_color: root.icon_color if root.icon_color else root.theme_cls.primary_color
+                text_color:
+                    root.icon_color if root.icon_color else \
+                    root.theme_cls.primary_color
 
             MDLabel:
                 id: label
                 text: " " + root.text
-                color: (1, 1, 1, 1) if root.theme_cls.theme_style == "Dark" else (0, 0, 0, 1)
                 markup: True
+                color:
+                    (1, 1, 1, 1) \
+                    if root.theme_cls.theme_style == "Dark" else \
+                    (0, 0, 0, 1)
 
     MDSeparator:
 
@@ -125,12 +134,16 @@ Builder.load_string(
             height: self.texture_size[1]
             bold: True
             markup: True
-            color: (1, 1, 1, 1) if root.theme_cls.theme_style == "Dark" else (0, 0, 0, 1)
+            color:
+                (1, 1, 1, 1) \
+                if root.theme_cls.theme_style == "Dark" else \
+                (0, 0, 0, 1)
 
     MDSeparator:
         id: separator
 
-<SortButton>:
+
+<SortButton>
     id: sort_btn
     icon: "arrow-up"
     pos_hint: {"center_y": 0.5}
@@ -139,6 +152,7 @@ Builder.load_string(
     theme_text_color: "Custom"
     text_color: self.theme_cls.secondary_text_color
     opacity: 0
+
 
 <TableHeader>
     bar_width: 0
@@ -178,7 +192,7 @@ Builder.load_string(
     data: root.recycle_data
     data_first_cells: root.data_first_cells
     key_viewclass: "viewclass"
-    #effect_cls: StiffScrollEffect
+    # effect_cls: StiffScrollEffect
 
     TableRecycleGridLayout:
         id: row_controller
@@ -203,7 +217,10 @@ Builder.load_string(
         shorten: True
         halign: "right"
         font_style: "Caption"
-        color: (1, 1, 1, 1) if root.theme_cls.theme_style == "Dark" else (0, 0, 0, 1)
+        color:
+            (1, 1, 1, 1) \
+            if root.theme_cls.theme_style == "Dark" else \
+            (0, 0, 0, 1)
 
     MDDropDownItem:
         id: drop_item
@@ -224,7 +241,10 @@ Builder.load_string(
         -text_size: None, None
         pos_hint: {"center_y": .5}
         font_style: "Caption"
-        color: (1, 1, 1, 1) if root.theme_cls.theme_style == "Dark" else (0, 0, 0, 1)
+        color:
+            (1, 1, 1, 1) \
+            if root.theme_cls.theme_style == "Dark" else \
+            (0, 0, 0, 1)
 
     MDIconButton:
         id: button_back
@@ -253,15 +273,7 @@ Builder.load_string(
         id: container
         orientation: "vertical"
         elevation: root.elevation
-        md_bg_color: 0, 0, 0, 0
         padding: "24dp", "24dp", "8dp", "8dp"
-
-        canvas:
-            Color:
-                rgba: root.theme_cls.bg_normal
-            RoundedRectangle:
-                pos: self.pos
-                size: self.size
 """
 )
 
@@ -344,6 +356,14 @@ class CellRow(
     selected = BooleanProperty(False)
     selectable = BooleanProperty(True)
 
+    def __init__(self, **kwargs):
+        super(CellRow, self).__init__(**kwargs)
+        self.ids.check.bind(active=self.select_check)
+        self.ids.check.bind(active=self.notify_checkbox_click)
+
+    def notify_checkbox_click(self, instance, active):
+        self.table.get_select_row(self.index)
+
     def on_icon(self, instance, value):
         self.icon_copy = value
 
@@ -417,11 +437,17 @@ class CellRow(
                         table_data._rows_number
                     ]
                 ):
-                    self.ids.check.state = "down"
+                    self.change_check_state_no_notif("down")
                 else:
-                    self.ids.check.state = "normal"
+                    self.change_check_state_no_notif("normal")
         else:
-            self.ids.check.state = "normal"
+            self.change_check_state_no_notif("normal")
+
+    def change_check_state_no_notif(self, new_state):
+        checkbox = self.ids.check
+        checkbox.unbind(active=self.notify_checkbox_click)
+        checkbox.state = new_state
+        checkbox.bind(active=self.notify_checkbox_click)
 
     def _check_all(self, state):
         """Checks if all checkboxes are in same state"""
@@ -431,10 +457,10 @@ class CellRow(
         else:
             self.table.table_header.ids.check.state = "normal"
 
-    def select_check(self, active):
+    def select_check(self, instance, active):
         """Called upon activation/deactivation of the checkbox."""
 
-        if active and self.index not in self.table.current_selection_check:
+        if active:
             if (
                 self.table._rows_number
                 not in self.table.current_selection_check
@@ -461,7 +487,6 @@ class CellRow(
                     self.table.current_selection_check[
                         self.table._rows_number
                     ].remove(self.index)
-        self.table.get_select_row(self.index)
 
 
 class SortButton(MDIconButton):
@@ -523,52 +548,42 @@ class CellHeader(MDTooltip, BoxLayout):
                 each.bind(on_leave=each.set_sort_btn)
 
         if self.sort_action:
-            tmp = []
-
             if not self.table_data:
                 th = self.parent.parent
                 self.table_data = th.table_data
 
-            # row_checks_prev = self.table_data._get_row_checks()
+            indices, sorted_data = self.sort_action(self.table_data.row_data)
 
-            for i in range(
-                0,
-                len(self.table_data.recycle_data),
-                self.table_data.total_col_headings,
-            ):
+            if not sorted_data:
+                return
 
-                row = []
-                for j in range(
-                    self.table_data.recycle_data[i]["range"][0],
-                    self.table_data.recycle_data[i]["range"][1] + 1,
-                ):
-                    data = self.table_data.recycle_data[j]
-                    if data.get("icon", None):
-                        inner_data = [data["icon"]]
-                        if data.get("icon_color", None):
-                            inner_data.append(data["icon_color"])
+            if inst.icon == "arrow-down":
+                sorted_data = sorted_data[::-1]
+                indices = indices[::-1]
 
-                        inner_data.append(data["text"])
-                        row.append(inner_data)
+            self.table_data.row_data = sorted_data
+            self.table_data.on_rows_num(self, self.table_data.rows_num)
+            self.restore_checks(dict(zip(indices, range(len(indices)))))
+            self.table_data.set_next_row_data_parts("reset")
+            self.table_data.cell_row_obj_dict = {}
+            self.table_data.table_header.ids.check.state = "normal"
 
-                    else:
-                        row.append(self.table_data.recycle_data[j]["text"])
-                tmp.append(row)
-            sorted_data = self.sort_action(tmp)
+    def restore_checks(self, indices):
+        curr_checks = self.table_data.current_selection_check
 
-            if sorted_data:
-                self.table_data.row_data = (
-                    sorted_data
-                    if inst.icon == "arrow-down"
-                    else sorted_data[::-1]
-                )
-                self.table_data.on_rows_num(self, self.table_data.rows_num)
-                self.table_data.set_row_data()
-                self.table_data.select_all("normal")
-                self.table_data.cell_row_obj_dict = {}
-                self.table_data.table_header.ids.check.state = "normal"
+        rows_num = self.table_data.rows_num
+        columns = self.table_data.total_col_headings
 
-                # TODO: Restore checked rows after sorting
+        new_checks = defaultdict(list)
+        for i, x in enumerate(curr_checks):
+            for j, y in enumerate(curr_checks[x]):
+                new_page = (indices[y // columns + x * rows_num]) // rows_num
+                new_indice = (
+                    (indices[y // columns + x * rows_num]) % rows_num
+                ) * columns
+                new_checks[new_page].append(new_indice)
+
+        self.table_data.current_selection_check = dict(new_checks)
 
     def set_sort_btn(self, instance):
         btn = instance.ids.box.children[-1]
@@ -747,7 +762,10 @@ class TableData(RecycleView):
         """Sets the text of the numbers of displayed pages in table."""
 
         if self.pagination:
-            if direction == "forward":
+            if direction == "reset":
+                self._current_value = 1
+                self._to_value = len(self._row_data_parts[self._rows_number])
+            elif direction == "forward":
                 if (
                     len(self._row_data_parts[self._rows_number])
                     < self._to_value
@@ -777,17 +795,33 @@ class TableData(RecycleView):
         """Sets the checkboxes of all rows to the active/inactive position."""
 
         for i in range(0, len(self.recycle_data), self.total_col_headings):
-
-            if self.cell_row_obj_dict.get(i, None):
-                cell_row_obj = self.cell_row_obj_dict[i]
-            else:
-                cell_row_obj = (
-                    cell_row_obj
-                ) = self.view_adapter.get_visible_view(i)
-                self.cell_row_obj_dict[i] = cell_row_obj
-
+            cell_row_obj = cell_row_obj = self.view_adapter.get_visible_view(i)
+            self.cell_row_obj_dict[i] = cell_row_obj
             self.on_mouse_select(cell_row_obj)
             cell_row_obj.ids.check.state = state
+
+        if state == "down":
+            # select all checks on all pages
+
+            rows_num = self.rows_num
+            columns = self.total_col_headings
+            full_pages = len(self.row_data) // self.rows_num
+            left_over_rows = len(self.row_data) % self.rows_num
+
+            new_checks = {}
+            for page in range(full_pages):
+                new_checks[page] = list(range(0, rows_num * columns, columns))
+
+            if left_over_rows:
+                new_checks[full_pages] = list(
+                    range(0, left_over_rows * columns, columns)
+                )
+
+            self.current_selection_check = new_checks
+            return
+
+        # resets all checks on all pages
+        self.current_selection_check = {}
 
     def check_all(self, state):
         """Checks if checkboxes of all rows are in the same state"""
@@ -848,13 +882,16 @@ class TableData(RecycleView):
         """
 
         self.rows_num = int(instance_menu_item.text)
-        self.set_row_data()
-        self.set_text_from_of("increment")
+        self.set_next_row_data_parts("reset")
+        self.set_text_from_of("reset")
 
     def set_next_row_data_parts(self, direction):
         """Called when switching the pages of the table."""
-
-        if direction == "forward":
+        if direction == "reset":
+            self._rows_number = 0
+            self.pagination.ids.button_back.disabled = True
+            self.pagination.ids.button_forward.disabled = False
+        elif direction == "forward":
             self._rows_number += 1
             self.pagination.ids.button_back.disabled = False
         elif direction == "back":

@@ -4,14 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/cdjpeg.c" "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/djpeg-static.dir/cdjpeg.c.o"
-  "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/djpeg.c" "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/djpeg-static.dir/djpeg.c.o"
-  "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/rdcolmap.c" "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/djpeg-static.dir/rdcolmap.c.o"
-  "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/rdswitch.c" "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/djpeg-static.dir/rdswitch.c.o"
-  "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/wrbmp.c" "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/djpeg-static.dir/wrbmp.c.o"
-  "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/wrgif.c" "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/djpeg-static.dir/wrgif.c.o"
-  "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/wrppm.c" "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/djpeg-static.dir/wrppm.c.o"
-  "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/wrtarga.c" "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/djpeg-static.dir/wrtarga.c.o"
+  "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/cdjpeg.c" "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/djpeg-static.dir/cdjpeg.c.o"
+  "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/djpeg.c" "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/djpeg-static.dir/djpeg.c.o"
+  "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/rdcolmap.c" "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/djpeg-static.dir/rdcolmap.c.o"
+  "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/rdswitch.c" "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/djpeg-static.dir/rdswitch.c.o"
+  "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/wrbmp.c" "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/djpeg-static.dir/wrbmp.c.o"
+  "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/wrgif.c" "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/djpeg-static.dir/wrgif.c.o"
+  "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/wrppm.c" "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/djpeg-static.dir/wrppm.c.o"
+  "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/wrtarga.c" "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/djpeg-static.dir/wrtarga.c.o"
   )
 set(CMAKE_C_COMPILER_ID "Clang")
 
@@ -22,7 +22,7 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/jpeg-static.dir/DependInfo.cmake"
+  "/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/jpeg-static.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

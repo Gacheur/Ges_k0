@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg
+CMAKE_SOURCE_DIR = /home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg
+CMAKE_BINARY_DIR = /home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg
 
 # Include any dependencies generated for this target.
 include CMakeFiles/rdjpgcom.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/rdjpgcom.dir/flags.make
 
 CMakeFiles/rdjpgcom.dir/rdjpgcom.c.o: CMakeFiles/rdjpgcom.dir/flags.make
 CMakeFiles/rdjpgcom.dir/rdjpgcom.c.o: rdjpgcom.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/rdjpgcom.dir/rdjpgcom.c.o"
-	/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=armv7-none-linux-androideabi16 --gcc-toolchain=/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/sysroot $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/rdjpgcom.dir/rdjpgcom.c.o   -c /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/rdjpgcom.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/rdjpgcom.dir/rdjpgcom.c.o"
+	/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=armv7-none-linux-androideabi16 --gcc-toolchain=/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/sysroot $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/rdjpgcom.dir/rdjpgcom.c.o   -c /home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/rdjpgcom.c
 
 CMakeFiles/rdjpgcom.dir/rdjpgcom.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/rdjpgcom.dir/rdjpgcom.c.i"
-	/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=armv7-none-linux-androideabi16 --gcc-toolchain=/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/sysroot $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/rdjpgcom.c > CMakeFiles/rdjpgcom.dir/rdjpgcom.c.i
+	/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=armv7-none-linux-androideabi16 --gcc-toolchain=/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/sysroot $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/rdjpgcom.c > CMakeFiles/rdjpgcom.dir/rdjpgcom.c.i
 
 CMakeFiles/rdjpgcom.dir/rdjpgcom.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/rdjpgcom.dir/rdjpgcom.c.s"
-	/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=armv7-none-linux-androideabi16 --gcc-toolchain=/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/sysroot $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/rdjpgcom.c -o CMakeFiles/rdjpgcom.dir/rdjpgcom.c.s
+	/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=armv7-none-linux-androideabi16 --gcc-toolchain=/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/sysroot $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/rdjpgcom.c -o CMakeFiles/rdjpgcom.dir/rdjpgcom.c.s
 
 # Object files for target rdjpgcom
 rdjpgcom_OBJECTS = \
@@ -80,7 +80,7 @@ rdjpgcom_EXTERNAL_OBJECTS =
 rdjpgcom: CMakeFiles/rdjpgcom.dir/rdjpgcom.c.o
 rdjpgcom: CMakeFiles/rdjpgcom.dir/build.make
 rdjpgcom: CMakeFiles/rdjpgcom.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable rdjpgcom"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable rdjpgcom"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/rdjpgcom.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -93,6 +93,6 @@ CMakeFiles/rdjpgcom.dir/clean:
 .PHONY : CMakeFiles/rdjpgcom.dir/clean
 
 CMakeFiles/rdjpgcom.dir/depend:
-	cd /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/rdjpgcom.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg /home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg /home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg /home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg /home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/CMakeFiles/rdjpgcom.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/rdjpgcom.dir/depend
 

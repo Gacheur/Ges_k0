@@ -318,7 +318,7 @@ from kivy.uix.floatlayout import FloatLayout
 from kivymd.color_definitions import text_colors
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.behaviors import (
-    RectangularElevationBehavior,
+    FakeRectangularElevationBehavior,
     SpecificBackgroundColorBehavior,
 )
 from kivymd.uix.button import MDFloatingActionButton, MDIconButton
@@ -428,7 +428,7 @@ class MDActionTopAppBarButton(MDIconButton, MDTooltip):
 
 class NotchedBox(
     ThemableBehavior,
-    RectangularElevationBehavior,
+    FakeRectangularElevationBehavior,
     SpecificBackgroundColorBehavior,
     BoxLayout,
 ):
@@ -471,8 +471,7 @@ class NotchedBox(
             self.width,
             self.size[1] - self._rounded_rectangle_height / 2,
         ]
-        notch_center_x = self.notch_center_x
-
+        notch_center_x = self.pos[0] + self.notch_center_x
         circle_radius = self.notch_radius
         degree_diff = int((180 - self._total_angle) / 2)
         circle_center = [notch_center_x, pos[1] + size[1]]

@@ -78,7 +78,7 @@ T := -o$(space)
 #
 #   We use our own FreeType configuration file.
 #
-CPPFLAGS := -DANDROID -D__ANDROID_API__=21 -I/home/t/.buildozer/android/platform/android-ndk-r19b/sysroot/usr/include/arm-linux-androideabi -I/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/ges_k0/include/python3.8
+CPPFLAGS := -DANDROID -D__ANDROID_API__=21 -I/home/t/.buildozer/android/platform/android-ndk-r19b/sysroot/usr/include/arm-linux-androideabi -I/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/ges_k0/include/python3.8
 CFLAGS   := -c -Wall -target armv7a-linux-androideabi21 -fomit-frame-pointer -march=armv7-a -mfloat-abi=softfp -mfpu=vfp -mthumb -fPIC -I/home/t/.buildozer/android/platform/android-ndk-r19b/sysroot/usr/include -fvisibility=hidden  -DFT_CONFIG_CONFIG_H="<ftconfig.h>"
 
 # ANSIFLAGS: Put there the flags used to make your compiler ANSI-compliant.
@@ -99,7 +99,7 @@ endif
 
 # Linker flags.
 #
-LDFLAGS           :=   -L/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/libs_collections/ges_k0/armeabi-v7a -L/home/t/.buildozer/android/platform/android-ndk-r19b/platforms/android-21/arch-arm/usr/lib -march=armv7-a -lz
+LDFLAGS           :=   -L/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/libs_collections/ges_k0/armeabi-v7a -L/home/t/.buildozer/android/platform/android-ndk-r19b/platforms/android-21/arch-arm/usr/lib -march=armv7-a -lz
 LIB_CLOCK_GETTIME :=   # for ftbench
 
 

@@ -1,11 +1,11 @@
-/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/obj/local/armeabi-v7a/objs-debug/png/arm/filter_neon.o: \
-  /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libpng-1.6.32/arm/filter_neon.S \
-  /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libpng-1.6.32/arm/../pngpriv.h \
-  /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libpng-1.6.32/pnglibconf.h \
-  /home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libpng-1.6.32/png.h
+/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/obj/local/armeabi-v7a/objs-debug/png/arm/filter_neon.o: \
+  /home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libpng-1.6.32/arm/filter_neon.S \
+  /home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libpng-1.6.32/arm/../pngpriv.h \
+  /home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libpng-1.6.32/pnglibconf.h \
+  /home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libpng-1.6.32/png.h
 
-/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libpng-1.6.32/arm/../pngpriv.h:
+/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libpng-1.6.32/arm/../pngpriv.h:
 
-/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libpng-1.6.32/pnglibconf.h:
+/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libpng-1.6.32/pnglibconf.h:
 
-/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libpng-1.6.32/png.h:
+/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/bootstrap_builds/sdl2/jni/SDL2_image/external/libpng-1.6.32/png.h:

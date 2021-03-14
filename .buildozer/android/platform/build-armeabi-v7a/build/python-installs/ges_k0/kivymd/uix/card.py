@@ -32,7 +32,7 @@ MDCard
     from kivymd.app import MDApp
 
     KV = '''
-    Screen:
+    MDScreen:
 
         MDCard:
             size_hint: None, None
@@ -61,7 +61,7 @@ Add content to card:
     from kivymd.app import MDApp
 
     KV = '''
-    Screen:
+    MDScreen:
 
         MDCard:
             orientation: "vertical"
@@ -156,9 +156,9 @@ End full code
                 _no_ripple_effect: True
 
 
-    Screen:
+    MDScreen:
 
-        BoxLayout:
+        MDBoxLayout:
             orientation: "vertical"
             spacing: "10dp"
 
@@ -282,9 +282,9 @@ End full code
                 _no_ripple_effect: True
 
 
-    Screen:
+    MDScreen:
 
-        BoxLayout:
+        MDBoxLayout:
             orientation: "vertical"
             spacing: "10dp"
 
@@ -377,9 +377,9 @@ End full code
                 _no_ripple_effect: True
 
 
-    Screen:
+    MDScreen:
 
-        BoxLayout:
+        MDBoxLayout:
             orientation: "vertical"
             spacing: "10dp"
 
@@ -459,7 +459,7 @@ End full code
         on_release: self.icon = "star-outline" if self.icon == "star" else "star"
 
 
-    Screen:
+    MDScreen:
 
         MDCard:
             orientation: "vertical"
@@ -558,10 +558,11 @@ from kivymd.color_definitions import colors
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.behaviors import (
     BackgroundColorBehavior,
+    FakeRectangularElevationBehavior,
     FocusBehavior,
     RectangularRippleBehavior,
-    RoundedRectangularElevationBehavior,
 )
+from kivymd.uix.boxlayout import MDBoxLayout
 
 Builder.load_string(
     """
@@ -586,18 +587,12 @@ Builder.load_string(
 
 
 <MDSeparator>
-    canvas:
-        Color:
-            rgba:
-                self.theme_cls.divider_color if not root.color else root.color
-        Rectangle:
-            size: self.size
-            pos: self.pos
+    md_bg_color: self.theme_cls.divider_color if not root.color else root.color
 """
 )
 
 
-class MDSeparator(ThemableBehavior, BoxLayout):
+class MDSeparator(ThemableBehavior, MDBoxLayout):
     """A separator line."""
 
     color = ColorProperty(None)
@@ -623,7 +618,7 @@ class MDSeparator(ThemableBehavior, BoxLayout):
 
 class MDCard(
     ThemableBehavior,
-    RoundedRectangularElevationBehavior,
+    FakeRectangularElevationBehavior,
     BackgroundColorBehavior,
     RectangularRippleBehavior,
     FocusBehavior,

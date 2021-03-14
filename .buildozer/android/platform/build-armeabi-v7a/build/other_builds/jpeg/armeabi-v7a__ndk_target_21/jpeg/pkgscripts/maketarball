@@ -25,7 +25,7 @@ PKGNAME=libjpeg-turbo
 VERSION=2.0.1
 ARCH=arm
 OS=Android
-PREFIX=/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/install
+PREFIX=/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg/install
 
 umask 022
 rm -f $PKGNAME-$VERSION-$OS-$ARCH.tar.bz2

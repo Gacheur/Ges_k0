@@ -16,12 +16,12 @@ our %config = (
   CC => "/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target armv7a-linux-androideabi21 -fomit-frame-pointer -march=armv7-a -mfloat-abi=softfp -mfpu=vfp -mthumb -fPIC",
   CFLAGS => [ "-target armv7a-linux-androideabi21 -fomit-frame-pointer -march=armv7-a -mfloat-abi=softfp -mfpu=vfp -mthumb -fPIC" ],
   CPPDEFINES => [ "__ANDROID_API__=21" ],
-  CPPFLAGS => [ "-DANDROID -D__ANDROID_API__=21 -I/home/t/.buildozer/android/platform/android-ndk-r19b/sysroot/usr/include/arm-linux-androideabi -I/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/ges_k0/include/python3.8" ],
+  CPPFLAGS => [ "-DANDROID -D__ANDROID_API__=21 -I/home/t/.buildozer/android/platform/android-ndk-r19b/sysroot/usr/include/arm-linux-androideabi -I/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/ges_k0/include/python3.8" ],
   CPPINCLUDES => [  ],
   CXX => "/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -target armv7a-linux-androideabi21 -fomit-frame-pointer -march=armv7-a -mfloat-abi=softfp -mfpu=vfp -mthumb -fPIC",
   CXXFLAGS => [ "-target armv7a-linux-androideabi21 -fomit-frame-pointer -march=armv7-a -mfloat-abi=softfp -mfpu=vfp -mthumb -fPIC" ],
   HASHBANGPERL => "/usr/bin/env perl",
-  LDFLAGS => [ "  -L/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/libs_collections/ges_k0/armeabi-v7a" ],
+  LDFLAGS => [ "  -L/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/libs_collections/ges_k0/armeabi-v7a" ],
   LDLIBS => [ "-lm" ],
   PERL => "/usr/bin/perl",
   RANLIB => ":",
@@ -70,12 +70,12 @@ our %config = (
       "BUILDFILE" => undef,
       "CC" => "/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target armv7a-linux-androideabi21 -fomit-frame-pointer -march=armv7-a -mfloat-abi=softfp -mfpu=vfp -mthumb -fPIC",
       "CFLAGS" => "-target armv7a-linux-androideabi21 -fomit-frame-pointer -march=armv7-a -mfloat-abi=softfp -mfpu=vfp -mthumb -fPIC",
-      "CPPFLAGS" => "-DANDROID -D__ANDROID_API__=21 -I/home/t/.buildozer/android/platform/android-ndk-r19b/sysroot/usr/include/arm-linux-androideabi -I/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/ges_k0/include/python3.8",
+      "CPPFLAGS" => "-DANDROID -D__ANDROID_API__=21 -I/home/t/.buildozer/android/platform/android-ndk-r19b/sysroot/usr/include/arm-linux-androideabi -I/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/ges_k0/include/python3.8",
       "CROSS_COMPILE" => undef,
       "CXX" => "/home/t/.buildozer/android/platform/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -target armv7a-linux-androideabi21 -fomit-frame-pointer -march=armv7-a -mfloat-abi=softfp -mfpu=vfp -mthumb -fPIC",
       "CXXFLAGS" => "-target armv7a-linux-androideabi21 -fomit-frame-pointer -march=armv7-a -mfloat-abi=softfp -mfpu=vfp -mthumb -fPIC",
       "HASHBANGPERL" => undef,
-      "LDFLAGS" => "  -L/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/libs_collections/ges_k0/armeabi-v7a",
+      "LDFLAGS" => "  -L/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/libs_collections/ges_k0/armeabi-v7a",
       "LDLIBS" => "-lm",
       "OPENSSL_LOCAL_CONFIG_DIR" => undef,
       "PERL" => undef,
@@ -3154,8 +3154,6 @@ our %unified_info = (
                 {
                     "deps" =>
                         [
-                            "ssl/packet.o",
-                            "ssl/tls13_enc.o",
                             "ssl/bio_ssl.o",
                             "ssl/d1_lib.o",
                             "ssl/d1_msg.o",
@@ -3185,6 +3183,8 @@ our %unified_info = (
                             "ssl/t1_trce.o",
                             "ssl/tls13_enc.o",
                             "ssl/tls_srp.o",
+                            "ssl/packet.o",
+                            "ssl/tls13_enc.o",
                         ],
                     "products" =>
                         {

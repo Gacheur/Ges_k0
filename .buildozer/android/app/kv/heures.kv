@@ -9,14 +9,13 @@
 			size_hint: None, None
 			size: dp(46), dp(46)
 			pos_hint: {'center_x': .5, 'center_y': .5}
-			
 
 		MDFloatingActionButton:
 			id:pick_time
 			pos_hint:{"center_y":.9, "center_x":1/5}
 			icon: "clock-outline"
 			opposite_colors: True
-			on_press: root.menu_time.open()
+			on_press: root.caller("Nombre d'heures")
 			md_bg_color: app.theme_cls.primary_color
 
 		MDLabel:
@@ -24,14 +23,12 @@
 			pos_hint:{"center_y":.8, "center_x":1/5}
 			halign:"center"
 
-
-
 		MDFloatingActionButton:
 			id:pick_date
 			pos_hint:{"center_y":.9, "center_x":2/5}
 			icon: "calendar"
 			#user_font_size: "40sp"
-			on_press:root.show_date_picker()
+			on_press:root.dialog_date.open()
 			md_bg_color: app.theme_cls.primary_color
 
 		MDLabel:
@@ -39,13 +36,12 @@
 			pos_hint:{"center_y":.8, "center_x":2/5}
 			halign:"center"
 
-
 		MDFloatingActionButton:
 			id: pick_pers
 			pos_hint:{"center_y":.9, "center_x":3/5}
 			icon: "account-circle"
 			#user_font_size: "40sp"
-			on_press: root.menu.open()
+			on_press: root.caller('Personne')
 			md_bg_color: app.theme_cls.primary_color
 
 		MDLabel:
@@ -58,13 +54,15 @@
 			pos_hint:{"center_y":.9, "center_x":4/5}
 			icon: "office-building"
 			#user_font_size: "40sp"
-			on_press: root.menu_chantier.open()
+			on_press: root.caller('Chantier')
 			md_bg_color: app.theme_cls.primary_color
 
 		MDLabel:
 			id:data_chantier
 			pos_hint:{"center_y":.8, "center_x":4/5}
 			halign:"center"
+
+
 
 
 
@@ -94,7 +92,26 @@
 		ScrollView:
 			pos_hint:{"top":.6}
 			size_hint_y:.6
+			orientation: "vertical"
 
 			MDList:
-				id: container
+				id: maincontainer
 
+
+<ItemConfirm>
+    on_release: self.set_icon(check)
+
+    CheckboxLeftWidget:
+        id: check
+        group: "check"
+
+
+<Content_dialog_picker>
+
+    size_hint_y: None
+    height: 800
+
+    ScrollView:        
+        orientation: "vertical"
+        MDList:
+            id: bd_cont

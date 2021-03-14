@@ -17,7 +17,7 @@ old_library=''
 inherited_linker_flags=''
 
 # Libraries that this one depends upon.
-dependency_libs=' -L/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/libs_collections/ges_k0/armeabi-v7a -lz -lm'
+dependency_libs=' -L/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/libs_collections/ges_k0/armeabi-v7a -lz -lm'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''
@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/png/armeabi-v7a__ndk_target_21/png/install/lib'
+libdir='/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/png/armeabi-v7a__ndk_target_21/png/install/lib'

@@ -6,5 +6,5 @@ C_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fsta
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/t/Bureau/Ges_k0_2020.1213/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg 
+C_INCLUDES = -I/home/t/Bureau/Ges_k0/.buildozer/android/platform/build-armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_21/jpeg 
 

@@ -64,9 +64,9 @@ class MainApp(MDApp):
 				self.ls_chantiers = self.sql.select_insert_delete("SELECT * from CHANTIERS")
 				print(self.ls_chantiers)
 
-				self.ls_heures = self.sql.select_insert_delete("SELECT * from HEURES")
-				self.ls_heures.reverse() # Replace la data dans le bon sens
-				print(self.ls_heures)
+				self.ls_data = self.sql.select_insert_delete("SELECT * from HEURES")
+				self.ls_data.reverse() # Replace la data dans le bon sens
+				print(self.ls_data)
 
 				return Builder.load_file("main.kv")
 

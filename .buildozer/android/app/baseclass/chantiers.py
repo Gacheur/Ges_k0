@@ -25,7 +25,6 @@ class Chantiers(Screen):
 
 		p = Thread(target=self.add_chantier)
 		p.start()
-		
 
 	def add_chantier(self):
 

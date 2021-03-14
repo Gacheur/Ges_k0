@@ -45,10 +45,10 @@ guidelines, you can do this by overloading the `color_definitions.py` object.
 .. code-block:: python
 
     from kivy.lang import Builder
-    from kivy.uix.floatlayout import FloatLayout
     from kivy.properties import ObjectProperty
 
     from kivymd.app import MDApp
+    from kivymd.uix.floatlayout import MDFloatLayout
     from kivymd.uix.tab import MDTabsBase
     from kivymd.icon_definitions import md_icons
 
@@ -103,7 +103,6 @@ guidelines, you can do this by overloading the `color_definitions.py` object.
 
 
     KV = '''
-
     BoxLayout:
         orientation: "vertical"
         MDToolbar:
@@ -112,16 +111,19 @@ guidelines, you can do this by overloading the `color_definitions.py` object.
             id: tabs
 
 
-    <Tab>:
+    <Tab>
 
         MDIconButton:
             id: icon
             icon: root.icon
             user_font_size: "48sp"
             pos_hint: {"center_x": .5, "center_y": .5}
+    '''
 
-    class Tab(FloatLayout, MDTabsBase):
+
+    class Tab(MDFloatLayout, MDTabsBase):
         '''Class implementing content for a tab.'''
+
         icon = ObjectProperty()
 
 
@@ -138,6 +140,7 @@ guidelines, you can do this by overloading the `color_definitions.py` object.
             for name_tab in self.icons:
                 tab = Tab(text="This is " + name_tab, icon=name_tab)
                 self.root.ids.tabs.add_widget(tab)
+
 
     Example().run()
 
@@ -166,6 +169,7 @@ from kivy.utils import get_color_from_hex
 
 from kivymd import images_path
 from kivymd.color_definitions import colors, hue, palette
+from kivymd.font_definitions import theme_font_styles
 from kivymd.material_resources import DEVICE_IOS, DEVICE_TYPE
 
 
@@ -1052,7 +1056,18 @@ class ThemeManager(EventDispatcher):
         Clock.schedule_once(lambda x: self.on_theme_style(0, self.theme_style))
         self._determine_device_orientation(None, Window.size)
         Window.bind(size=self._determine_device_orientation)
+        self.bind(font_styles=self.sync_theme_styles)
         self.colors = colors
+        Clock.schedule_once(self.sync_theme_styles)
+
+    def sync_theme_styles(self, *args):
+        # Syncs the values from self.font_styles to theme_font_styles
+        # this will ensure continuity when someone registers a new font_style.
+        for num, style in enumerate(theme_font_styles):
+            if style not in self.font_styles:
+                theme_font_styles.pop(num)
+        for style in self.font_styles.keys():
+            theme_font_styles.append(style)
 
 
 class ThemableBehavior(EventDispatcher):
